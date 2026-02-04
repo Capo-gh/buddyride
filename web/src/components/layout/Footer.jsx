@@ -58,6 +58,7 @@ const Footer = ({ setCurrentPage }) => {
         color: '#ADB5BD',
         lineHeight: '1.6',
         maxWidth: '320px',
+        margin: '0 auto',
     };
 
     const socialStyle = {

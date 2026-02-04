@@ -9,7 +9,7 @@ const HowItWorks = () => {
             styleEl.id = styleId;
             styleEl.textContent = `
         @media (max-width: 768px) {
-          .hiw-grid { grid-template-columns: 1fr !important; gap: 24px !important; max-width: 420px !important; }
+          .hiw-grid { grid-template-columns: 1fr !important; gap: 24px !important; max-width: 420px !important; margin: 0 auto !important; }
           .hiw-connector { display: none !important; }
           .hiw-section-title { font-size: 28px !important; }
         }
