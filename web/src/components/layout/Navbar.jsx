@@ -124,7 +124,7 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
         <>
             <nav style={navbarStyle}>
                 {/* Logo */}
-                <div style={logoContainerStyle} onClick={() => { setCurrentPage(ROUTES.HOME); setMenuOpen(false); }}>
+                <div style={logoContainerStyle} onClick={() => { setCurrentPage(ROUTES.HOME); setMenuOpen(false); window.scrollTo(0, 0); }}>
                     <img src={logo} alt="BuddyRide" style={{ height: '40px', objectFit: 'contain' }} />
                 </div>
 
