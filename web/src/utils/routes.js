@@ -3,6 +3,8 @@ export const ROUTES = {
     REQUEST_RIDE: '/request-ride',
     BECOME_BUDDY: '/become-buddy',
     ABOUT: '/about',
+    EXECUTIVES: '/executives',
+    SERVICES: '/services',
     DONATE: '/donate',
     FAQ: '/faq',
     CONTACT: '/contact',
@@ -11,6 +13,7 @@ export const ROUTES = {
 
 export const NAV_LINKS = [
     { label: 'Home', path: ROUTES.HOME },
+    { label: 'Services', path: ROUTES.SERVICES },
     { label: 'Request a Ride', path: ROUTES.REQUEST_RIDE },
     { label: 'Become a Buddy', path: ROUTES.BECOME_BUDDY },
     { label: 'About Us', path: ROUTES.ABOUT },

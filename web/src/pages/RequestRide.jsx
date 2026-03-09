@@ -17,15 +17,33 @@ const airportOptions = [
     { value: 'other', label: 'Other' },
 ];
 
+const luggageOptions = [
+    { value: '0', label: 'No luggage' },
+    { value: '1', label: '1 bag/suitcase' },
+    { value: '2', label: '2 bags/suitcases' },
+    { value: '3', label: '3 bags/suitcases' },
+    { value: '4', label: '4 bags/suitcases' },
+    { value: '5+', label: '5 or more' },
+];
+
+const assistanceOptions = [
+    { value: 'no', label: 'No, I don\'t need any special assistance' },
+    { value: 'yes', label: 'Yes, I have a disability or special needs' },
+];
+
 const RequestRide = () => {
     const [formData, setFormData] = React.useState({
         fullName: '',
         email: '',
         phone: '',
         airport: '',
+        otherAirport: '',
         flightNumber: '',
         arrivalDate: '',
         arrivalTime: '',
+        numberOfLuggage: '',
+        needsAssistance: '',
+        assistanceDetails: '',
         destination: '',
         notes: '',
     });
@@ -91,9 +109,13 @@ const RequestRide = () => {
             email: '',
             phone: '',
             airport: '',
+            otherAirport: '',
             flightNumber: '',
             arrivalDate: '',
             arrivalTime: '',
+            numberOfLuggage: '',
+            needsAssistance: '',
+            assistanceDetails: '',
             destination: '',
             notes: '',
         });
@@ -198,10 +220,23 @@ const RequestRide = () => {
             </div>
 
             <div className="request-ride-card" style={cardStyle}>
-                {/* Info Box */}
+                {/* 4-day notice */}
+                <div style={{ backgroundColor: '#FFF3CD', borderRadius: '10px', padding: '14px 18px', marginBottom: '16px', display: 'flex', gap: '10px', alignItems: 'flex-start', border: '1px solid #FFC10744' }}>
+                    <span style={{ fontSize: '20px' }}>⏰</span>
+                    <p style={{ fontSize: '14px', color: '#856404', lineHeight: '1.5', margin: 0 }}>
+                        <strong>Please submit your request at least 4 days before your arrival</strong> so we have time to match you with an available Buddy.
+                    </p>
+                </div>
+
+                {/* Free service + coverage info */}
                 <div style={infoBoxStyle}>
                     <span style={{ fontSize: '20px' }}>💡</span>
-                    <p style={infoTextStyle}>This service is <strong>completely free</strong>. A volunteer Buddy will pick you up at the airport and help you settle in. No payment required.</p>
+                    <div>
+                        <p style={infoTextStyle}>This service is <strong>completely free</strong>. A volunteer Buddy will pick you up at the airport and help you settle in. No payment required.</p>
+                        <p style={{ ...infoTextStyle, marginTop: '8px', marginBottom: 0 }}>
+                            <strong>Currently serving:</strong> Montreal (QC) · Winnipeg (MB) · Washington State – Pullman area (USA)
+                        </p>
+                    </div>
                 </div>
 
                 {/* Personal Info */}
@@ -222,13 +257,28 @@ const RequestRide = () => {
                     <Input label="Arrival Date" type="date" name="arrivalDate" value={formData.arrivalDate} onChange={handleChange} error={errors.arrivalDate} required />
                     <Input label="Arrival Time" type="time" name="arrivalTime" value={formData.arrivalTime} onChange={handleChange} error={errors.arrivalTime} required />
                 </div>
+                {formData.airport === 'other' && (
+                    <Input label="Please specify your airport" type="text" name="otherAirport" value={formData.otherAirport} onChange={handleChange} placeholder="e.g. Calgary International Airport (YYC)" error={errors.otherAirport} required />
+                )}
+
+                <div style={dividerStyle}></div>
+
+                {/* Travel Details */}
+                <h3 style={sectionTitleStyle}>Travel Details</h3>
+                <div className="request-ride-grid" style={gridStyle}>
+                    <Input label="Number of Luggage" name="numberOfLuggage" value={formData.numberOfLuggage} onChange={handleChange} placeholder="Select" options={luggageOptions} error={errors.numberOfLuggage} required />
+                    <Input label="Do you need disability/special assistance?" name="needsAssistance" value={formData.needsAssistance} onChange={handleChange} placeholder="Select" options={assistanceOptions} error={errors.needsAssistance} required />
+                </div>
+                {formData.needsAssistance === 'yes' && (
+                    <Input label="Please describe your assistance needs" type="textarea" name="assistanceDetails" value={formData.assistanceDetails} onChange={handleChange} placeholder="e.g. I use a wheelchair and need a vehicle with ramp access..." error={errors.assistanceDetails} required />
+                )}
 
                 <div style={dividerStyle}></div>
 
                 {/* Destination */}
                 <h3 style={sectionTitleStyle}>Destination</h3>
                 <Input label="Destination Address" type="text" name="destination" value={formData.destination} onChange={handleChange} placeholder="e.g. 123 Main St, Montreal, QC" error={errors.destination} required />
-                <Input label="Additional Notes" type="textarea" name="notes" value={formData.notes} onChange={handleChange} placeholder="e.g. I'll have 2 suitcases, I need help finding my accommodation..." />
+                <Input label="Additional Notes" type="textarea" name="notes" value={formData.notes} onChange={handleChange} placeholder="Any other info we should know about your arrival..." />
 
                 {/* Submit */}
                 <div style={{ marginTop: '32px' }}>

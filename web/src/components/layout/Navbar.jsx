@@ -25,11 +25,6 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
         cursor: 'pointer',
     };
 
-    const logoTextStyle = {
-        fontSize: '22px',
-        fontWeight: '700',
-        letterSpacing: '-0.5px',
-    };
 
     const desktopLinksStyle = {
         display: 'flex',

@@ -1,5 +1,4 @@
 import React from 'react';
-import Card from '../components/shared/Card';
 import Button from '../components/shared/Button';
 import { ROUTES } from '../utils/routes';
 
@@ -16,39 +15,18 @@ const AboutUs = ({ setCurrentPage }) => {
           .about-title { font-size: 28px !important; }
           .about-story-grid { grid-template-columns: 1fr !important; }
           .about-values-grid { grid-template-columns: 1fr !important; max-width: 480px !important; margin-left: auto !important; margin-right: auto !important; }
-          .about-team-grid { grid-template-columns: 1fr 1fr !important; }
-          .about-coordinators-grid { grid-template-columns: 1fr 1fr !important; }
+          .about-more-grid { grid-template-columns: 1fr !important; }
           .about-cta-box { padding: 40px 20px !important; }
-        }
-        @media (max-width: 400px) {
-          .about-team-grid { grid-template-columns: 1fr !important; max-width: 320px !important; margin-left: auto !important; margin-right: auto !important; }
-          .about-coordinators-grid { grid-template-columns: 1fr !important; max-width: 320px !important; margin-left: auto !important; margin-right: auto !important; }
         }
       `;
             document.head.appendChild(styleEl);
         }
     }, []);
 
-    const leaders = [
-        { name: 'Raphael Aidoo', role: 'President & Project Lead', initials: 'RA', color: '#5CB1D8', bio: 'PhD candidate in Bioresource Engineering at McGill. Founded RaphAid Inc. and brings deep expertise in grassroots leadership and strategic community development.' },
-        { name: 'Donald Bimpong', role: 'VP, Operations & Logistics', initials: 'DB', color: '#9DB637', bio: 'PhD student in Food Science at McGill and a Mastercard Scholar. His firsthand experience as an international student drives his passion for making newcomers feel at home.' },
-        { name: 'Charity O. Darkwa', role: 'VP, Communications & HR', initials: 'CD', color: '#4A95BF', bio: 'Pursuing a Master\'s in Communication & Public Policy at the University of Michigan. Founded SmilingHour and leads BuddyRide\'s outreach and team development.' },
-        { name: 'Edmund Larbi Afari', role: 'VP, Finance Management', initials: 'EA', color: '#85991E', bio: 'PhD student in Food Science at Washington State University. A seasoned student leader and BuddyRide\'s Washington State Representative.' },
-    ];
-
-    const coordinators = [
-        { name: 'Lindsay Kamgang', role: 'Communication & Request Co-ordinator', initials: 'LK', color: '#5CB1D8', bio: 'Ensures every ride request and communication is handled smoothly and with care.' },
-        { name: 'Abbas Sadiq', role: 'Volunteer Co-ordinator', initials: 'AS', color: '#9DB637', bio: 'Recruits and supports our Buddy volunteers, keeping them motivated and well-equipped.' },
-        { name: 'Cephas Amoah', role: 'Volunteer Co-ordinator', initials: 'CA', color: '#4A95BF', bio: 'Grows the volunteer base and maintains a strong, engaged community of Buddies.' },
-        { name: 'Benedicta N. Biyimba', role: 'Welfare & Organization Co-ordinator', initials: 'BN', color: '#85991E', bio: 'Oversees the welfare of riders and Buddies, ensuring every experience is safe and caring.' },
-        { name: 'Derrick K. Allotey', role: 'Welfare & Organization Co-ordinator', initials: 'DA', color: '#5CB1D8', bio: 'Supports organization-wide operations and coordination between all teams.' },
-        { name: 'Ibrahim Sabiku', role: 'Technology & Systems Co-ordinator', initials: 'IS', color: '#9DB637', bio: 'Builds and maintains the platforms and tools that power BuddyRide\'s mission.' },
-    ];
-
     const values = [
         { icon: '💛', title: 'Warmth', desc: 'Every interaction should feel like a welcome, not a transaction.' },
         { icon: '🌍', title: 'Inclusivity', desc: 'We celebrate every background, language, and culture that walks through our doors.' },
-        { icon: '🤝', title: 'Community', desc: 'We believe in the power of peers helping peers — not institutions, not strangers.' },
+        { icon: '🤝', title: 'Community', desc: 'We believe in the power of peers helping peers, not institutions, not strangers.' },
         { icon: '🛡️', title: 'Safety', desc: 'Trust is everything. We take the safety of every rider and Buddy seriously.' },
     ];
 
@@ -207,64 +185,6 @@ const AboutUs = ({ setCurrentPage }) => {
         lineHeight: '1.6',
     };
 
-    // Team
-    const teamGridStyle = {
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr 1fr 1fr',
-        gap: '20px',
-        marginBottom: '40px',
-    };
-
-    const coordinatorsGridStyle = {
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr 1fr',
-        gap: '20px',
-        marginBottom: '72px',
-    };
-
-    const teamCardStyle = {
-        backgroundColor: '#FFFFFF',
-        borderRadius: '16px',
-        padding: '28px 20px',
-        textAlign: 'center',
-        border: '1px solid #DEE2E6',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
-    };
-
-    const teamAvatarStyle = (color) => ({
-        width: '76px',
-        height: '76px',
-        borderRadius: '50%',
-        backgroundColor: color,
-        color: '#FFFFFF',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '22px',
-        fontWeight: '700',
-        margin: '0 auto 14px auto',
-    });
-
-    const teamNameStyle = {
-        fontSize: '16px',
-        fontWeight: '700',
-        color: '#1A1A1A',
-        marginBottom: '4px',
-    };
-
-    const teamRoleStyle = {
-        fontSize: '13px',
-        color: '#5CB1D8',
-        fontWeight: '600',
-        marginBottom: '10px',
-    };
-
-    const teamBioStyle = {
-        fontSize: '13px',
-        color: '#6C757D',
-        lineHeight: '1.5',
-    };
-
     // CTA
     const ctaBoxStyle = {
         background: 'linear-gradient(135deg, #EBF5FA 0%, #F0F5E0 100%)',
@@ -304,10 +224,10 @@ const AboutUs = ({ setCurrentPage }) => {
             <div style={headerStyle}>
                 <div style={{ fontSize: '40px', marginBottom: '12px' }}>🌟</div>
                 <h1 className="about-title" style={titleStyle}>About BuddyRide</h1>
-                <p style={subtitleStyle}>We started as a simple idea — no one should have to figure out a new country alone. Now we're turning that idea into reality, one ride at a time.</p>
+                <p style={subtitleStyle}>We started with a simple idea: no one should have to figure out a new country alone. Now we're turning that idea into reality, one ride at a time.</p>
             </div>
 
-            {/* Our Story */}
+            {/* Our Story — 3 chapters */}
             <div className="about-story-grid" style={storyGridStyle}>
                 <div style={storyImageBoxStyle}>
                     <div style={storyEmojiStyle}>✈️</div>
@@ -319,9 +239,31 @@ const AboutUs = ({ setCurrentPage }) => {
                 </div>
                 <div>
                     <div style={sectionLabelStyle}>Our Story</div>
-                    <h2 style={sectionTitleStyle}>Born from experience</h2>
-                    <p style={storyTextStyle}>BuddyRide was born from a simple but powerful observation: arriving in a new country is one of the most vulnerable moments a person can experience. No familiar faces, no idea how things work, and often a language barrier on top of it all.</p>
-                    <p style={storyTextStyle}>Our founders experienced this firsthand as international students. They knew there had to be a better way — and so BuddyRide was created. A peer-driven, free service that turns the scariest part of moving abroad into a warm welcome.</p>
+                    <h2 style={sectionTitleStyle}>The Crisis of Arrival</h2>
+                    <p style={storyTextStyle}>Every year, thousands of ambitious students arrive in a new country, carrying not just heavy luggage but also uncertainty and quiet vulnerability. The journey can be isolating, and arriving at the airport often feels like a crisis point, turning excitement into panic instantly.</p>
+                    <p style={storyTextStyle}>We, the founding members, didn't just witness that struggle; we lived it. Whether stranded at the airport or navigating unfamiliar transit with zero local context, each of us felt lost and overwhelmed at some point.</p>
+                </div>
+            </div>
+
+            {/* The Turning Point */}
+            <div style={{ marginBottom: '72px', backgroundColor: '#EBF5FA', borderRadius: '20px', padding: '40px', border: '1px solid #5CB1D822' }}>
+                <div style={sectionLabelStyle}>The Turning Point</div>
+                <h2 style={{ ...sectionTitleStyle, marginBottom: '16px' }}>One kind act changed everything</h2>
+                <p style={storyTextStyle}>For each of us, the turning point came when a kind, compassionate peer either offered a free ride, guided us through complex transit, or helped us settle in. That single act of kindness gave us security, dignity, and grounded our stay in confidence.</p>
+                <p style={{ ...storyTextStyle, marginBottom: 0 }}>These experiences are not just memories; they became our mission. They inspired BuddyRide. We embraced the belief that no incoming student should have to face that crippling isolation alone. Our focus is clear: to transform the terrifying hurdle of arrival into a moment of confidence, belonging, and warmth.</p>
+            </div>
+
+            {/* More Than a Ride */}
+            <div className="about-more-grid" style={{ marginBottom: '72px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+                <div style={{ backgroundColor: '#F0F5E0', borderRadius: '20px', padding: '36px', border: '1px solid #9DB63733' }}>
+                    <div style={{ fontSize: '36px', marginBottom: '14px' }}>🚘</div>
+                    <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#1A1A1A', marginBottom: '12px' }}>More Than a Ride</h3>
+                    <p style={{ fontSize: '14px', color: '#6C757D', lineHeight: '1.75' }}>We are not a taxi service. We are your first friends in a new country, providing genuine guidance and creating a sense of community every mile of the way.</p>
+                </div>
+                <div style={{ backgroundColor: '#EBF5FA', borderRadius: '20px', padding: '36px', border: '1px solid #5CB1D833' }}>
+                    <div style={{ fontSize: '36px', marginBottom: '14px' }}>🌱</div>
+                    <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#1A1A1A', marginBottom: '12px' }}>An Investment in Your Future</h3>
+                    <p style={{ fontSize: '14px', color: '#6C757D', lineHeight: '1.75' }}>BuddyRide isn't just about reducing stress or saving money. It's about investing in the student's entire academic future by building a foundation of confidence and care from day one.</p>
                 </div>
             </div>
 
@@ -357,43 +299,21 @@ const AboutUs = ({ setCurrentPage }) => {
                 ))}
             </div>
 
-            {/* Leadership */}
-            <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-                <div style={{ ...sectionLabelStyle, backgroundColor: '#F0F5E0', color: '#9DB637' }}>Leadership</div>
-                <h2 style={sectionTitleStyle}>The people behind the rides</h2>
-            </div>
-            <div className="about-team-grid" style={teamGridStyle}>
-                {leaders.map((member, i) => (
-                    <div key={i} style={teamCardStyle}>
-                        <div style={teamAvatarStyle(member.color)}>{member.initials}</div>
-                        <div style={teamNameStyle}>{member.name}</div>
-                        <div style={teamRoleStyle}>{member.role}</div>
-                        <div style={teamBioStyle}>{member.bio}</div>
-                    </div>
-                ))}
-            </div>
-
-            {/* Coordinating Team */}
-            <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-                <div style={{ ...sectionLabelStyle, backgroundColor: '#EBF5FA', color: '#5CB1D8' }}>Coordinating Team</div>
-                <h2 style={sectionTitleStyle}>The hands that make it all work</h2>
-            </div>
-            <div className="about-coordinators-grid" style={coordinatorsGridStyle}>
-                {coordinators.map((member, i) => (
-                    <div key={i} style={teamCardStyle}>
-                        <div style={teamAvatarStyle(member.color)}>{member.initials}</div>
-                        <div style={teamNameStyle}>{member.name}</div>
-                        <div style={teamRoleStyle}>{member.role}</div>
-                        <div style={teamBioStyle}>{member.bio}</div>
-                    </div>
-                ))}
+            {/* Meet the Team CTA */}
+            <div style={{ textAlign: 'center', marginBottom: '72px', padding: '40px 32px', background: 'linear-gradient(135deg, #F0F5E0 0%, #EBF5FA 100%)', borderRadius: '20px', border: '1px solid #DEE2E6' }}>
+                <div style={{ fontSize: '36px', marginBottom: '12px' }}>🏅</div>
+                <h2 style={{ fontSize: '24px', fontWeight: '700', color: '#1A1A1A', marginBottom: '10px' }}>Meet the People Behind BuddyRide</h2>
+                <p style={{ fontSize: '15px', color: '#6C757D', lineHeight: '1.6', marginBottom: '24px', maxWidth: '460px', margin: '0 auto 24px auto' }}>
+                    Our leadership and coordinating team are all international students who get it, because they've lived it.
+                </p>
+                <Button variant="primary" onClick={() => setCurrentPage(ROUTES.EXECUTIVES)}>Meet the Team →</Button>
             </div>
 
             {/* CTA */}
             <div className="about-cta-box" style={ctaBoxStyle}>
                 <div style={{ fontSize: '36px', marginBottom: '16px' }}>🤍</div>
                 <h2 style={ctaTitleStyle}>Be part of the story</h2>
-                <p style={ctaSubtitleStyle}>Whether you want to ride with us, volunteer as a Buddy, or support our mission — there's a place for you.</p>
+                <p style={ctaSubtitleStyle}>Whether you want to ride with us, volunteer as a Buddy, or support our mission, there's a place for you.</p>
                 <div style={ctaButtonsStyle}>
                     <Button variant="primary" onClick={() => setCurrentPage(ROUTES.REQUEST_RIDE)}>🛬 Request a Ride</Button>
                     <Button variant="secondary" onClick={() => setCurrentPage(ROUTES.BECOME_BUDDY)}>🤝 Become a Buddy</Button>

@@ -25,9 +25,13 @@ export const validateRideForm = (formData) => {
     if (!isNotEmpty(formData.phone)) errors.phone = 'Phone number is required.';
     else if (!isValidPhone(formData.phone)) errors.phone = 'Please enter a valid phone number.';
     if (!isNotEmpty(formData.airport)) errors.airport = 'Please select an airport.';
+    if (formData.airport === 'other' && !isNotEmpty(formData.otherAirport)) errors.otherAirport = 'Please specify your airport.';
     if (!isNotEmpty(formData.flightNumber)) errors.flightNumber = 'Flight number is required.';
     if (!isNotEmpty(formData.arrivalDate)) errors.arrivalDate = 'Arrival date is required.';
     if (!isNotEmpty(formData.arrivalTime)) errors.arrivalTime = 'Arrival time is required.';
+    if (!isNotEmpty(formData.numberOfLuggage)) errors.numberOfLuggage = 'Please select number of luggage.';
+    if (!isNotEmpty(formData.needsAssistance)) errors.needsAssistance = 'Please answer this question.';
+    if (formData.needsAssistance === 'yes' && !isNotEmpty(formData.assistanceDetails)) errors.assistanceDetails = 'Please describe your assistance needs.';
     if (!isNotEmpty(formData.destination)) errors.destination = 'Destination address is required.';
 
     return {
