@@ -88,13 +88,13 @@ const Home = ({ setCurrentPage }) => {
                         </div>
                     </FadeIn>
 
-                    <div className="home-milestones-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
-                        <FadeIn delay="0.1s">
+                    <div className="home-milestones-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', alignItems: 'stretch' }}>
+                        <FadeIn delay="0.1s" style={{ height: '100%' }}>
                             <div style={{
                                 borderRadius: '20px', padding: '36px 32px',
                                 background: 'linear-gradient(135deg, #EBF5FA 0%, #dbeef8 100%)',
                                 border: '1px solid #5CB1D833',
-                                position: 'relative', overflow: 'hidden',
+                                position: 'relative', overflow: 'hidden', height: '100%', boxSizing: 'border-box',
                             }}>
                                 <div style={{
                                     position: 'absolute', top: '-20px', right: '-20px',
@@ -110,12 +110,12 @@ const Home = ({ setCurrentPage }) => {
                             </div>
                         </FadeIn>
 
-                        <FadeIn delay="0.2s">
+                        <FadeIn delay="0.2s" style={{ height: '100%' }}>
                             <div style={{
                                 borderRadius: '20px', padding: '36px 32px',
                                 background: 'linear-gradient(135deg, #F0F5E0 0%, #e5f0c8 100%)',
                                 border: '1px solid #9DB63733',
-                                position: 'relative', overflow: 'hidden',
+                                position: 'relative', overflow: 'hidden', height: '100%', boxSizing: 'border-box',
                             }}>
                                 <div style={{
                                     position: 'absolute', top: '-20px', right: '-20px',
@@ -126,7 +126,7 @@ const Home = ({ setCurrentPage }) => {
                                     Our First 30 Rides
                                 </h3>
                                 <p style={{ fontSize: '14px', color: '#6C757D', lineHeight: '1.7', margin: '0 0 14px 0' }}>
-                                    BuddyRide accomplished 30 rides for 30 international students. This is not just an accomplishment — it is a milestone in creating an ecosystem of comfort for newcomers, one ride at a time.
+                                    BuddyRide accomplished 30 rides for 30 international students. This is not just an accomplishment; it is a milestone in creating an ecosystem of comfort for newcomers, one ride at a time.
                                 </p>
                                 <p style={{ fontSize: '13px', color: '#9DB637', fontWeight: '600', margin: 0 }}>
                                     A big THANK YOU to all who contributed. 🙏
