@@ -26,7 +26,7 @@ const executives = [
         color: '#5CB1D8',
         photo: RaphaelPhoto,
         email: 'raphael.aidoo@mail.mcgill.ca',
-        linkedin: null,
+        linkedin: 'https://www.linkedin.com/in/raphaelaidoo/',
         shortBio: 'PhD candidate in Bioresource Engineering at McGill. Founded RaphAid Inc. and brings deep expertise in grassroots leadership and strategic community development.',
         fullBio: [
             'Raphael is a PhD candidate in Bioresource Engineering at McGill University, where his research focuses on advancing sustainable and technologically informed industrial bioprocessing solutions. His academic discipline is augmented by extensive experience in grassroots leadership and strategic community development.',
