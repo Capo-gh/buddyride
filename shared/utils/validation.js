@@ -50,7 +50,10 @@ export const validateVolunteerForm = (formData) => {
     else if (!isValidPhone(formData.phone)) errors.phone = 'Please enter a valid phone number.';
     if (!isNotEmpty(formData.university)) errors.university = 'Please select your university.';
     if (!isNotEmpty(formData.city)) errors.city = 'City is required.';
-    if (formData.hasCar === undefined) errors.hasCar = 'Please let us know if you have a car.';
+    if (!isNotEmpty(formData.volunteerRole)) errors.volunteerRole = 'Please select a volunteer role.';
+    if (!isNotEmpty(formData.wantsToBeDriver)) errors.wantsToBeDriver = 'Please answer this question.';
+    if (formData.wantsToBeDriver === 'yes' && !isNotEmpty(formData.carType)) errors.carType = 'Please enter your car type.';
+    if (formData.wantsToBeDriver === 'yes' && !isNotEmpty(formData.passengerCapacity)) errors.passengerCapacity = 'Please select passenger capacity.';
 
     return {
         isValid: Object.keys(errors).length === 0,

@@ -5,6 +5,7 @@ export const ROUTES = {
     ABOUT: '/about',
     EXECUTIVES: '/executives',
     SERVICES: '/services',
+    PARTNERS: '/partners',
     DONATE: '/donate',
     FAQ: '/faq',
     CONTACT: '/contact',
@@ -16,6 +17,8 @@ export const NAV_LINKS = [
     { label: 'Services', path: ROUTES.SERVICES },
     { label: 'Request a Ride', path: ROUTES.REQUEST_RIDE },
     { label: 'Become a Buddy', path: ROUTES.BECOME_BUDDY },
+    { label: 'Our Team', path: ROUTES.EXECUTIVES },
+    { label: 'Partners', path: ROUTES.PARTNERS },
     { label: 'About Us', path: ROUTES.ABOUT },
     { label: 'FAQ', path: ROUTES.FAQ },
 ];

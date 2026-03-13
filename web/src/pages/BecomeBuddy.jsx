@@ -1,7 +1,6 @@
 import React from 'react';
 import Input from '../components/shared/Input';
 import Button from '../components/shared/Button';
-import Card from '../components/shared/Card';
 import { validateVolunteerForm } from '../../../shared/utils/validation';
 import emailjs from '@emailjs/browser';
 
@@ -25,9 +24,27 @@ const cityOptions = [
     { value: 'other', label: 'Other' },
 ];
 
-const carOptions = [
-    { value: 'yes', label: 'Yes, I have a car with valid insurance' },
-    { value: 'no', label: 'No, but I can help in other ways' },
+const volunteerRoleOptions = [
+    { value: 'airport_driver', label: 'Airport Pickup Driver' },
+    { value: 'campus_ambassador', label: 'Campus Ambassador' },
+    { value: 'community_outreach', label: 'Community Outreach' },
+    { value: 'event_support', label: 'Event Support' },
+    { value: 'admin_support', label: 'Administrative Support' },
+    { value: 'other', label: 'Other' },
+];
+
+const driverOptions = [
+    { value: 'yes', label: 'Yes, I want to volunteer as a driver' },
+    { value: 'no', label: 'No, I will help in other ways' },
+];
+
+const capacityOptions = [
+    { value: '1', label: '1 passenger' },
+    { value: '2', label: '2 passengers' },
+    { value: '3', label: '3 passengers' },
+    { value: '4', label: '4 passengers' },
+    { value: '5', label: '5 passengers' },
+    { value: '6+', label: '6 or more passengers' },
 ];
 
 const BecomeBuddy = () => {
@@ -37,7 +54,10 @@ const BecomeBuddy = () => {
         phone: '',
         university: '',
         city: '',
-        hasCar: undefined,
+        volunteerRole: '',
+        wantsToBeDriver: '',
+        carType: '',
+        passengerCapacity: '',
         whyVolunteer: '',
     });
 
@@ -69,10 +89,7 @@ const BecomeBuddy = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: name === 'hasCar' ? value : value,
-        }));
+        setFormData((prev) => ({ ...prev, [name]: value }));
         if (errors[name]) {
             setErrors((prev) => ({ ...prev, [name]: '' }));
         }
@@ -110,7 +127,10 @@ const BecomeBuddy = () => {
             phone: '',
             university: '',
             city: '',
-            hasCar: undefined,
+            volunteerRole: '',
+            wantsToBeDriver: '',
+            carType: '',
+            passengerCapacity: '',
             whyVolunteer: '',
         });
         setErrors({});
@@ -177,7 +197,6 @@ const BecomeBuddy = () => {
         alignItems: 'start',
     };
 
-    // Left column styles
     const perksCardStyle = {
         backgroundColor: 'linear-gradient(135deg, #F0F5E0, #EBF5FA)',
         borderRadius: '16px',
@@ -227,7 +246,6 @@ const BecomeBuddy = () => {
         lineHeight: '1.5',
     };
 
-    // How it works box
     const howBoxStyle = {
         backgroundColor: '#EBF5FA',
         borderRadius: '12px',
@@ -271,7 +289,6 @@ const BecomeBuddy = () => {
         paddingTop: '2px',
     };
 
-    // Right column (form) styles
     const cardStyle = {
         backgroundColor: '#FFFFFF',
         borderRadius: '16px',
@@ -365,8 +382,18 @@ const BecomeBuddy = () => {
 
                     <div style={dividerStyle}></div>
 
-                    <h3 style={sectionTitleStyle}>Availability</h3>
-                    <Input label="Do you have a car?" name="hasCar" value={formData.hasCar || ''} onChange={handleChange} placeholder="Select an option" options={carOptions} error={errors.hasCar} required />
+                    <h3 style={sectionTitleStyle}>Your Volunteer Role</h3>
+                    <Input label="What role would you like to fill?" name="volunteerRole" value={formData.volunteerRole} onChange={handleChange} placeholder="Select a role" options={volunteerRoleOptions} error={errors.volunteerRole} required />
+
+                    <Input label="Do you want to volunteer as a driver?" name="wantsToBeDriver" value={formData.wantsToBeDriver} onChange={handleChange} placeholder="Select an option" options={driverOptions} error={errors.wantsToBeDriver} required />
+
+                    {formData.wantsToBeDriver === 'yes' && (
+                        <div style={gridStyle}>
+                            <Input label="Type of car" type="text" name="carType" value={formData.carType} onChange={handleChange} placeholder="e.g. Toyota Corolla 2020" error={errors.carType} required />
+                            <Input label="Passenger capacity" name="passengerCapacity" value={formData.passengerCapacity} onChange={handleChange} placeholder="Select capacity" options={capacityOptions} error={errors.passengerCapacity} required />
+                        </div>
+                    )}
+
                     <Input label="Why do you want to volunteer?" type="textarea" name="whyVolunteer" value={formData.whyVolunteer} onChange={handleChange} placeholder="Tell us what motivates you..." />
 
                     <div style={{ marginTop: '32px' }}>

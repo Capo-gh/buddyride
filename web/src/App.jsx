@@ -11,6 +11,7 @@ import Contact from './pages/Contact';
 import ReportIncident from './pages/ReportIncident';
 import Executives from './pages/Executives';
 import Services from './pages/Services';
+import Partners from './pages/Partners';
 import { ROUTES } from './utils/routes';
 
 const App = () => {
@@ -35,6 +36,8 @@ const App = () => {
         return <Executives setCurrentPage={setCurrentPage} />;
       case ROUTES.SERVICES:
         return <Services setCurrentPage={setCurrentPage} />;
+      case ROUTES.PARTNERS:
+        return <Partners />;
       case ROUTES.DONATE:
         return <Donate />;
       case ROUTES.FAQ:
