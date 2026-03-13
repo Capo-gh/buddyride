@@ -155,6 +155,26 @@ const Home = ({ setCurrentPage }) => {
                             🤝 Become a Buddy
                         </Button>
                     </div>
+                    <div style={{ marginTop: '20px' }}>
+                        <a
+                            href="https://outlook.office.com/book/MeetwithRaphael@McGill.onmicrosoft.com/s/MmDMK2wx-ky4prdnVlfnLQ2?ismsaljsauthenabled"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '8px',
+                                fontSize: '14px',
+                                fontWeight: '600',
+                                color: '#5CB1D8',
+                                textDecoration: 'none',
+                                borderBottom: '1px solid #5CB1D8',
+                                paddingBottom: '2px',
+                            }}
+                        >
+                            📅 Want to know more? Book a meeting with the team
+                        </a>
+                    </div>
                 </div>
             </section>
         </div>

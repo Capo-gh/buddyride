@@ -9,8 +9,8 @@ const services = [
         title: 'Free Airport Pickups',
         color: '#5CB1D8',
         bg: '#EBF5FA',
-        desc: 'We transport you safely and freely from the airport to any destination in Montreal, Winnipeg (Canada) and Washington State (USA). Your first moments abroad should feel like a welcome, not a wait.',
-        highlights: ['100% free of charge', 'Door-to-door service', 'Peer-verified volunteers', 'Available in Montreal, Winnipeg & Washington'],
+        desc: 'We transport you safely and freely from the airport to your destination. We operate across multiple cities in Canada and the USA. Your first moments abroad should feel like a welcome, not a wait.',
+        highlights: ['100% free of charge', 'Door-to-door service', 'Peer-verified volunteers', 'Growing network of cities'],
     },
     {
         icon: '🏦',
@@ -49,7 +49,13 @@ const services = [
 const coverageAreas = [
     { flag: '🇨🇦', city: 'Montreal, QC', country: 'Canada' },
     { flag: '🇨🇦', city: 'Winnipeg, MB', country: 'Canada' },
-    { flag: '🇺🇸', city: 'Washington State', country: 'USA (Pullman area)' },
+    { flag: '🇨🇦', city: 'Edmonton, AB', country: 'Canada' },
+    { flag: '🇨🇦', city: 'Guelph, ON', country: 'Canada' },
+    { flag: '🇨🇦', city: 'Toronto, ON', country: 'Canada' },
+    { flag: '🇺🇸', city: 'Fayetteville, AR', country: 'USA' },
+    { flag: '🇺🇸', city: 'Pullman, WA', country: 'USA' },
+    { flag: '🇺🇸', city: 'Madison, WI', country: 'USA' },
+    { flag: '🇺🇸', city: 'DeKalb, IL', country: 'USA' },
 ];
 
 const Services = ({ setCurrentPage }) => {
@@ -189,7 +195,7 @@ const Services = ({ setCurrentPage }) => {
                     <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.85)', marginBottom: '32px', maxWidth: '480px', margin: '0 auto 32px auto' }}>
                         Currently serving international students arriving in these cities. More locations coming soon.
                     </p>
-                    <div className="services-coverage" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px', maxWidth: '640px', margin: '0 auto' }}>
+                    <div className="services-coverage" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', maxWidth: '800px', margin: '0 auto' }}>
                         {coverageAreas.map((area, i) => (
                             <div key={i} style={{
                                 backgroundColor: 'rgba(255,255,255,0.15)',

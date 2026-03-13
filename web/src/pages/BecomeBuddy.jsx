@@ -348,17 +348,9 @@ const BecomeBuddy = () => {
                             <div style={howNumberStyle}>1</div>
                             <p style={howTextStyle}>We review your application and verify your student status.</p>
                         </div>
-                        <div style={howStepStyle}>
-                            <div style={howNumberStyle}>2</div>
-                            <p style={howTextStyle}>You'll get a short onboarding email with guidelines and safety tips.</p>
-                        </div>
-                        <div style={howStepStyle}>
-                            <div style={howNumberStyle}>3</div>
-                            <p style={howTextStyle}>When a new student books a ride, we match them with you based on location and availability.</p>
-                        </div>
                         <div style={{ ...howStepStyle, marginBottom: 0 }}>
-                            <div style={howNumberStyle}>4</div>
-                            <p style={howTextStyle}>You pick them up, help them settle in, and earn their gratitude forever.</p>
+                            <div style={howNumberStyle}>2</div>
+                            <p style={howTextStyle}>You'll get a short onboarding email with your volunteer portfolio details, guidelines, and safety tips. Then you're part of the team!</p>
                         </div>
                     </div>
                 </div>

@@ -234,7 +234,7 @@ const RequestRide = () => {
                     <div>
                         <p style={infoTextStyle}>This service is <strong>completely free</strong>. A volunteer Buddy will pick you up at the airport and help you settle in. No payment required.</p>
                         <p style={{ ...infoTextStyle, marginTop: '8px', marginBottom: 0 }}>
-                            <strong>Currently serving:</strong> Montreal (QC) · Winnipeg (MB) · Washington State – Pullman area (USA)
+                            <strong>Currently serving:</strong> Montreal (QC) · Winnipeg (MB) · Edmonton (AB) · Guelph (ON) · Toronto (ON) · Fayetteville AR · Pullman WA · Madison WI · DeKalb IL
                         </p>
                     </div>
                 </div>
