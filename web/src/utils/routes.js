@@ -12,17 +12,6 @@ export const ROUTES = {
     REPORT: '/report-incident',
 };
 
-export const NAV_LINKS = [
-    { label: 'Home', path: ROUTES.HOME },
-    { label: 'Services', path: ROUTES.SERVICES },
-    { label: 'Request a Ride', path: ROUTES.REQUEST_RIDE },
-    { label: 'Become a Buddy', path: ROUTES.BECOME_BUDDY },
-    { label: 'Our Team', path: ROUTES.EXECUTIVES },
-    { label: 'Partners', path: ROUTES.PARTNERS },
-    { label: 'About Us', path: ROUTES.ABOUT },
-    { label: 'FAQ', path: ROUTES.FAQ },
-];
-
 export const FOOTER_LINKS = [
     { label: 'Donate', path: ROUTES.DONATE },
     { label: 'Contact Us', path: ROUTES.CONTACT },
