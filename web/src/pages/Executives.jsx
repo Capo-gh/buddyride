@@ -181,7 +181,7 @@ const Executives = ({ setCurrentPage }) => {
                 onMouseLeave={() => setHovered(false)}
             >
                 <img src={member.photo} alt={member.name} style={{
-                    width: '100px', height: '100px', borderRadius: '50%',
+                    width: '130px', height: '130px', borderRadius: '50%',
                     objectFit: 'cover', objectPosition: 'top',
                     margin: '0 auto 14px auto', display: 'block',
                     border: `3px solid ${member.color}`,
@@ -249,7 +249,7 @@ const Executives = ({ setCurrentPage }) => {
                 onMouseLeave={() => setHovered(false)}
             >
                 <img src={member.photo} alt={member.name} style={{
-                    width: '80px', height: '80px', borderRadius: '50%',
+                    width: '100px', height: '100px', borderRadius: '50%',
                     objectFit: 'cover', objectPosition: 'top',
                     margin: '0 auto 12px auto', display: 'block',
                     border: `3px solid ${member.color}`,

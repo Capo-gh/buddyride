@@ -1,15 +1,25 @@
 import React from 'react';
 import FadeIn from '../components/shared/FadeIn';
+import DobsonLogo from '../assets/partners/dobson.jpeg';
 
 const partners = [
     {
+        name: 'McGill Dobson Centre for Entrepreneurship',
+        logo: DobsonLogo,
+        type: 'Entrepreneurship & Innovation',
+        description: 'The McGill Dobson Centre supports student entrepreneurs with funding, mentorship, and programming. BuddyRide is proud to be part of the McGill entrepreneurship ecosystem.',
+        contactLabel: 'View on LinkedIn',
+        contactUrl: 'https://www.linkedin.com/company/mcgill-dobson-center-for-entrepreneurship/',
+    },
+    {
         name: 'Beaconsfield Community Church',
+        logo: null,
         address: '455 Church Street',
         city: 'Beaconsfield, QC H9W 3S6',
         type: 'Faith Community',
         description: 'A welcoming community in the West Island of Montreal that supports newcomers and international students settling into the area.',
-        contactLabel: 'Contact the church',
-        contactEmail: null,
+        contactLabel: null,
+        contactUrl: null,
     },
 ];
 
@@ -66,17 +76,22 @@ const Partners = () => {
                         }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
                                 <div style={{
-                                    width: '48px',
-                                    height: '48px',
+                                    width: '56px',
+                                    height: '56px',
                                     borderRadius: '12px',
-                                    backgroundColor: '#EBF5FA',
+                                    backgroundColor: '#F8F9FA',
+                                    border: '1px solid #DEE2E6',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
                                     fontSize: '22px',
                                     flexShrink: 0,
+                                    overflow: 'hidden',
                                 }}>
-                                    {partner.type === 'Faith Community' ? '⛪' : '🏢'}
+                                    {partner.logo
+                                        ? <img src={partner.logo} alt={partner.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                        : (partner.type === 'Faith Community' ? '⛪' : '🏢')
+                                    }
                                 </div>
                                 <div>
                                     <span style={{
@@ -90,21 +105,25 @@ const Partners = () => {
                                 </div>
                             </div>
 
-                            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginBottom: '14px' }}>
-                                <span style={{ fontSize: '14px', marginTop: '1px' }}>📍</span>
-                                <div>
-                                    <div style={{ fontSize: '14px', color: '#343A40', fontWeight: '500' }}>{partner.address}</div>
-                                    <div style={{ fontSize: '13px', color: '#6C757D' }}>{partner.city}</div>
+                            {partner.address && (
+                                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginBottom: '14px' }}>
+                                    <span style={{ fontSize: '14px', marginTop: '1px' }}>📍</span>
+                                    <div>
+                                        <div style={{ fontSize: '14px', color: '#343A40', fontWeight: '500' }}>{partner.address}</div>
+                                        <div style={{ fontSize: '13px', color: '#6C757D' }}>{partner.city}</div>
+                                    </div>
                                 </div>
-                            </div>
+                            )}
 
                             <p style={{ fontSize: '14px', color: '#6C757D', lineHeight: '1.6', marginBottom: '20px' }}>
                                 {partner.description}
                             </p>
 
-                            {partner.contactEmail && (
+                            {partner.contactUrl && (
                                 <a
-                                    href={`mailto:${partner.contactEmail}`}
+                                    href={partner.contactUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     style={{
                                         display: 'inline-block',
                                         fontSize: '13px',
