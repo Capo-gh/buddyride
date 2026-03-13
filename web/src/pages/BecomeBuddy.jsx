@@ -17,10 +17,16 @@ const universityOptions = [
 ];
 
 const cityOptions = [
-    { value: 'montreal', label: 'Montreal' },
-    { value: 'toronto', label: 'Toronto' },
-    { value: 'ottawa', label: 'Ottawa' },
-    { value: 'vancouver', label: 'Vancouver' },
+    { value: 'montreal', label: 'Montreal, QC' },
+    { value: 'winnipeg', label: 'Winnipeg, MB' },
+    { value: 'edmonton', label: 'Edmonton, AB' },
+    { value: 'guelph', label: 'Guelph, ON' },
+    { value: 'toronto', label: 'Toronto, ON' },
+    { value: 'ottawa', label: 'Ottawa, ON' },
+    { value: 'fayetteville', label: 'Fayetteville, AR' },
+    { value: 'pullman', label: 'Pullman, WA' },
+    { value: 'madison', label: 'Madison, WI' },
+    { value: 'dekalb', label: 'DeKalb, IL' },
     { value: 'other', label: 'Other' },
 ];
 

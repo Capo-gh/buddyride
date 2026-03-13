@@ -42,7 +42,7 @@ const FAQ = ({ setCurrentPage }) => {
                 },
                 {
                     q: 'How far in advance should I book?',
-                    a: 'We recommend booking at least 48 hours before your arrival so we have time to find the best Buddy match for you. However, we\'ll do our best even with shorter notice.',
+                    a: 'We recommend booking at least 4 days (96 hours) before your arrival so we have time to find the best Buddy match for you. However, we\'ll do our best even with shorter notice.',
                 },
                 {
                     q: 'Can I book a ride for someone else?',
@@ -50,7 +50,7 @@ const FAQ = ({ setCurrentPage }) => {
                 },
                 {
                     q: 'What countries and airports do you cover?',
-                    a: 'We currently operate across major airports in Canada and the USA, including Montreal, Toronto, Vancouver, Ottawa, and more. Check our Request a Ride page for the full list of supported airports.',
+                    a: 'We operate across Canada and the USA. Canadian cities include Montreal (QC), Winnipeg (MB), Edmonton (AB), Guelph (ON), and Toronto (ON). US cities include Fayetteville (AR), Pullman (WA), Madison (WI), and DeKalb (IL). Check our Request a Ride page for the full list of supported airports.',
                 },
             ],
         },
