@@ -3,28 +3,20 @@ import Card from '../shared/Card';
 
 const testimonials = [
     {
-        name: 'Amina K.',
-        country: 'Nigeria',
-        university: 'University of Toronto',
-        text: 'I was so nervous about arriving in Canada alone. My Buddy, Sarah, was waiting right at arrivals with a sign. She helped me with my luggage, drove me to my dorm, and even showed me where the nearest grocery store was. I felt safe from the very first minute.',
-        avatar: 'AK',
+        name: 'Ray Johnson',
+        country: 'Ghana',
+        university: 'McGill University',
+        text: 'I joined BuddyRide because I believe no student should feel alone when arriving in a new country. I am excited to help new students feel connected and at home from the very beginning.',
+        avatar: 'RJ',
         avatarColor: '#5CB1D8',
     },
     {
-        name: 'Liang W.',
-        country: 'China',
+        name: 'Oluwafemi Oke',
+        country: 'Nigeria',
         university: 'McGill University',
-        text: "I didn't even know how to read the signs at the airport. My Buddy spoke a little Mandarin and that made all the difference. BuddyRide turned what could have been the most stressful day into something really warm and welcoming.",
-        avatar: 'LW',
+        text: "I joined BuddyRide because it stands for everything I value: kindness, community, and meaningful impact. Students arriving in a new country often face excitement mixed with uncertainty and vulnerability, and BuddyRide turns that moment into one of guidance, support, and belonging. I'm proud to help create a welcoming start that builds confidence and makes their journey brighter from day one.",
+        avatar: 'OO',
         avatarColor: '#9DB637',
-    },
-    {
-        name: 'Priya M.',
-        country: 'India',
-        university: 'Concordia University',
-        text: "As a Buddy volunteer, I get to be the first friendly face someone sees in a new country. There's no better feeling. I remember how lost I was when I first arrived, and now I get to make sure others don't have to feel that way.",
-        avatar: 'PM',
-        avatarColor: '#4A95BF',
     },
 ];
 
