@@ -34,6 +34,7 @@ const volunteerRoleOptions = [
     { value: 'airport_driver', label: 'Airport Pickup Driver' },
     { value: 'campus_ambassador', label: 'Campus Ambassador' },
     { value: 'community_outreach', label: 'Community Outreach' },
+    { value: 'communications_media', label: 'Communications and Media' },
     { value: 'event_support', label: 'Event Support' },
     { value: 'admin_support', label: 'Administrative Support' },
     { value: 'other', label: 'Other' },
@@ -59,13 +60,17 @@ const BecomeBuddy = () => {
         email: '',
         phone: '',
         university: '',
+        otherUniversity: '',
         city: '',
+        otherCity: '',
         volunteerRole: '',
+        otherVolunteerRole: '',
         wantsToBeDriver: '',
         carType: '',
         passengerCapacity: '',
         whyVolunteer: '',
     });
+    const [agreedToTerms, setAgreedToTerms] = React.useState(false);
 
     const [errors, setErrors] = React.useState({});
     const [submitted, setSubmitted] = React.useState(false);
@@ -107,6 +112,10 @@ const BecomeBuddy = () => {
             setErrors(validationErrors);
             return;
         }
+        if (!agreedToTerms) {
+            setErrors((prev) => ({ ...prev, terms: 'You must agree to the terms and conditions before submitting.' }));
+            return;
+        }
 
         setSubmitting(true);
 
@@ -132,13 +141,17 @@ const BecomeBuddy = () => {
             email: '',
             phone: '',
             university: '',
+            otherUniversity: '',
             city: '',
+            otherCity: '',
             volunteerRole: '',
+            otherVolunteerRole: '',
             wantsToBeDriver: '',
             carType: '',
             passengerCapacity: '',
             whyVolunteer: '',
         });
+        setAgreedToTerms(false);
         setErrors({});
         setSubmitted(false);
     };
@@ -377,11 +390,20 @@ const BecomeBuddy = () => {
                         <Input label="University" name="university" value={formData.university} onChange={handleChange} placeholder="Select university" options={universityOptions} error={errors.university} required />
                         <Input label="City" name="city" value={formData.city} onChange={handleChange} placeholder="Select city" options={cityOptions} error={errors.city} required />
                     </div>
+                    {formData.university === 'other' && (
+                        <Input label="Please specify your university" type="text" name="otherUniversity" value={formData.otherUniversity} onChange={handleChange} placeholder="e.g. University of Calgary" required />
+                    )}
+                    {formData.city === 'other' && (
+                        <Input label="Please specify your city" type="text" name="otherCity" value={formData.otherCity} onChange={handleChange} placeholder="e.g. Vancouver, BC" required />
+                    )}
 
                     <div style={dividerStyle}></div>
 
                     <h3 style={sectionTitleStyle}>Your Volunteer Role</h3>
                     <Input label="What role would you like to fill?" name="volunteerRole" value={formData.volunteerRole} onChange={handleChange} placeholder="Select a role" options={volunteerRoleOptions} error={errors.volunteerRole} required />
+                    {formData.volunteerRole === 'other' && (
+                        <Input label="Please specify your role" type="text" name="otherVolunteerRole" value={formData.otherVolunteerRole} onChange={handleChange} placeholder="e.g. Social Media Manager" required />
+                    )}
 
                     <Input label="Do you want to volunteer as a driver?" name="wantsToBeDriver" value={formData.wantsToBeDriver} onChange={handleChange} placeholder="Select an option" options={driverOptions} error={errors.wantsToBeDriver} required />
 
@@ -394,7 +416,26 @@ const BecomeBuddy = () => {
 
                     <Input label="Why do you want to volunteer?" type="textarea" name="whyVolunteer" value={formData.whyVolunteer} onChange={handleChange} placeholder="Tell us what motivates you..." />
 
-                    <div style={{ marginTop: '32px' }}>
+                    {/* Terms & Conditions */}
+                    <div style={{ marginTop: '8px' }}>
+                        <label style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', cursor: 'pointer' }}>
+                            <input
+                                type="checkbox"
+                                checked={agreedToTerms}
+                                onChange={(e) => { setAgreedToTerms(e.target.checked); setErrors((prev) => ({ ...prev, terms: '' })); }}
+                                style={{ marginTop: '3px', width: '16px', height: '16px', flexShrink: 0, cursor: 'pointer', accentColor: '#9DB637' }}
+                            />
+                            <span style={{ fontSize: '13px', color: '#343A40', lineHeight: '1.5' }}>
+                                By submitting this form I acknowledge and agree to all{' '}
+                                <a href="https://drive.google.com/file/d/1Y8tudLk1KHoNW3st13mRiQyDICDBtUxW/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" style={{ color: '#9DB637', fontWeight: '600' }}>
+                                    waiver terms and conditions
+                                </a>. <span style={{ color: '#DC3545' }}>*</span>
+                            </span>
+                        </label>
+                        {errors.terms && <p style={{ fontSize: '13px', color: '#DC3545', marginTop: '6px' }}>{errors.terms}</p>}
+                    </div>
+
+                    <div style={{ marginTop: '24px' }}>
                         <Button variant="secondary" onClick={handleSubmit} fullWidth={true} disabled={submitting}>
                             {submitting ? 'Sending...' : 'Join as a Buddy 🤝'}
                         </Button>

@@ -12,6 +12,9 @@ import AbbasPhoto from '../assets/team/Abbas.jpg';
 import CephasPhoto from '../assets/team/Cephas.png';
 import BenedictaPhoto from '../assets/team/Benedicta.jpg';
 import DerrickPhoto from '../assets/team/Derrick.jpg';
+import NaomiPhoto from '../assets/team/Naomi.jpeg';
+import RayPhoto from '../assets/team/Ray.jpeg';
+import OluwafemiPhoto from '../assets/team/Oluwafemi .jpeg';
 
 const LinkedInIcon = () => (
     <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
@@ -119,6 +122,33 @@ const coordinators = [
         linkedin: 'https://www.linkedin.com/in/derrick-kpakpo-allotey-7bb32b14a/',
         bio: 'Supports organization-wide operations and coordination between all teams.',
     },
+    {
+        name: 'Naomi Fokuo',
+        role: 'Outreach & Partnership Co-ordinator',
+        color: '#9DB637',
+        photo: NaomiPhoto,
+        linkedin: 'https://www.linkedin.com/in/naomi-fokuo-9354a9184',
+        bio: 'Drives community partnerships and extends BuddyRide\'s reach to more campuses and cities across North America.',
+    },
+];
+
+const volunteers = [
+    {
+        name: 'Ray Johnson',
+        role: 'Finance & Welfare Volunteer',
+        color: '#5CB1D8',
+        photo: RayPhoto,
+        university: 'McGill University',
+        bio: 'I joined BuddyRide because I believe no student should feel alone when arriving in a new country. I am excited to help new students feel connected and at home from the very beginning.',
+    },
+    {
+        name: 'Oluwafemi Oke',
+        role: 'Communications & Media Volunteer',
+        color: '#9DB637',
+        photo: OluwafemiPhoto,
+        university: 'McGill University',
+        bio: 'I joined BuddyRide because it stands for everything I value: kindness, community, and meaningful impact. Students arriving in a new country often face excitement mixed with uncertainty and vulnerability, and BuddyRide turns that moment into one of guidance, support, and belonging. I\'m proud to help create a welcoming start that builds confidence and makes their journey brighter from day one.',
+    },
 ];
 
 const openRoles = [
@@ -126,11 +156,6 @@ const openRoles = [
         role: 'Technology & Systems Co-ordinator',
         color: '#9DB637',
         desc: "Build and maintain the platforms and tools that power BuddyRide's mission. We're looking for someone passionate about tech for good.",
-    },
-    {
-        role: 'Outreach & Partnership Co-ordinator',
-        color: '#4A95BF',
-        desc: "Drive community partnerships and extend BuddyRide's reach to more campuses and cities across North America.",
     },
 ];
 
@@ -257,14 +282,16 @@ const Executives = ({ setCurrentPage }) => {
                 <div style={{ fontSize: '15px', fontWeight: '700', color: '#1A1A1A', marginBottom: '3px' }}>{member.name}</div>
                 <div style={{ fontSize: '12px', color: member.color, fontWeight: '600', marginBottom: '10px', lineHeight: '1.4' }}>{member.role}</div>
                 <p style={{ fontSize: '13px', color: '#6C757D', lineHeight: '1.5', marginBottom: '12px' }}>{member.bio}</p>
-                <a href={member.linkedin} target="_blank" rel="noreferrer" style={{
-                    display: 'inline-flex', alignItems: 'center', gap: '5px',
-                    padding: '5px 10px', borderRadius: '6px',
-                    backgroundColor: '#EBF5FA', color: '#0A66C2',
-                    fontSize: '12px', fontWeight: '600', textDecoration: 'none',
-                }}>
-                    <LinkedInIcon /> LinkedIn
-                </a>
+                {member.linkedin && (
+                    <a href={member.linkedin} target="_blank" rel="noreferrer" style={{
+                        display: 'inline-flex', alignItems: 'center', gap: '5px',
+                        padding: '5px 10px', borderRadius: '6px',
+                        backgroundColor: '#EBF5FA', color: '#0A66C2',
+                        fontSize: '12px', fontWeight: '600', textDecoration: 'none',
+                    }}>
+                        <LinkedInIcon /> LinkedIn
+                    </a>
+                )}
             </div>
         );
     };
@@ -350,6 +377,23 @@ const Executives = ({ setCurrentPage }) => {
             </FadeIn>
             <div className="exec-coord-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '24px', marginBottom: '72px' }}>
                 {coordinators.map((member, i) => (
+                    <FadeIn key={i} delay={`${0.1 + i * 0.07}s`}>
+                        <CoordCard member={member} />
+                    </FadeIn>
+                ))}
+            </div>
+
+            <div style={{ height: '1px', backgroundColor: '#DEE2E6', margin: '0 0 56px 0' }}></div>
+
+            {/* Volunteers */}
+            <FadeIn delay="0.05s">
+                <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+                    <div style={sectionLabel('#F0F5E0', '#9DB637')}>Volunteers</div>
+                    <h2 style={{ fontSize: '26px', fontWeight: '700', color: '#1A1A1A', marginBottom: '0' }}>The people who show up</h2>
+                </div>
+            </FadeIn>
+            <div className="exec-coord-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '24px', marginBottom: '72px' }}>
+                {volunteers.map((member, i) => (
                     <FadeIn key={i} delay={`${0.1 + i * 0.07}s`}>
                         <CoordCard member={member} />
                     </FadeIn>

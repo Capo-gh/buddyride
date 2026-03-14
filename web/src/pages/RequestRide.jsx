@@ -54,6 +54,7 @@ const RequestRide = () => {
     const [errors, setErrors] = React.useState({});
     const [submitted, setSubmitted] = React.useState(false);
     const [submitting, setSubmitting] = React.useState(false);
+    const [agreedToTerms, setAgreedToTerms] = React.useState(false);
 
     React.useEffect(() => {
         const styleId = 'request-ride-responsive';
@@ -85,6 +86,10 @@ const RequestRide = () => {
         const { isValid, errors: validationErrors } = validateRideForm(formData);
         if (!isValid) {
             setErrors(validationErrors);
+            return;
+        }
+        if (!agreedToTerms) {
+            setErrors((prev) => ({ ...prev, terms: 'You must agree to the terms and conditions before submitting.' }));
             return;
         }
 
@@ -122,6 +127,7 @@ const RequestRide = () => {
             destination: '',
             notes: '',
         });
+        setAgreedToTerms(false);
         setErrors({});
         setSubmitted(false);
     };
@@ -283,8 +289,27 @@ const RequestRide = () => {
                 <Input label="Destination Address" type="text" name="destination" value={formData.destination} onChange={handleChange} placeholder="e.g. 123 Main St, Montreal, QC" error={errors.destination} required />
                 <Input label="Additional Notes" type="textarea" name="notes" value={formData.notes} onChange={handleChange} placeholder="Any other info we should know about your arrival..." />
 
+                {/* Terms & Conditions */}
+                <div style={{ marginTop: '8px' }}>
+                    <label style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', cursor: 'pointer' }}>
+                        <input
+                            type="checkbox"
+                            checked={agreedToTerms}
+                            onChange={(e) => { setAgreedToTerms(e.target.checked); setErrors((prev) => ({ ...prev, terms: '' })); }}
+                            style={{ marginTop: '3px', width: '16px', height: '16px', flexShrink: 0, cursor: 'pointer', accentColor: '#5CB1D8' }}
+                        />
+                        <span style={{ fontSize: '13px', color: '#343A40', lineHeight: '1.5' }}>
+                            I acknowledge that BuddyRide is a free service and I agree to all{' '}
+                            <a href="https://drive.google.com/file/d/1GUwX9vQwN8lotZkG1JuFKZ1E6BJAA5y9/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" style={{ color: '#5CB1D8', fontWeight: '600' }}>
+                                established waiver terms and conditions
+                            </a>. <span style={{ color: '#DC3545' }}>*</span>
+                        </span>
+                    </label>
+                    {errors.terms && <p style={{ fontSize: '13px', color: '#DC3545', marginTop: '6px' }}>{errors.terms}</p>}
+                </div>
+
                 {/* Submit */}
-                <div style={{ marginTop: '32px' }}>
+                <div style={{ marginTop: '24px' }}>
                     <Button variant="primary" onClick={handleSubmit} fullWidth={true} disabled={submitting}>
                         {submitting ? 'Sending...' : 'Request My Ride 🛬'}
                     </Button>

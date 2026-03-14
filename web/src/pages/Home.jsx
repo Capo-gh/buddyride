@@ -6,6 +6,7 @@ import Testimonials from '../components/sections/Testimonials';
 import Button from '../components/shared/Button';
 import FadeIn from '../components/shared/FadeIn';
 import { ROUTES } from '../utils/routes';
+import SustainabilityImg from '../assets/sustainability.png';
 
 const Home = ({ setCurrentPage }) => {
     React.useEffect(() => {
@@ -138,6 +139,40 @@ const Home = ({ setCurrentPage }) => {
             </section>
 
             <Testimonials />
+
+            {/* Sustainability Ecosystem */}
+            <section style={{ padding: '80px 24px', backgroundColor: '#F8F9FA' }}>
+                <div style={{ maxWidth: '860px', margin: '0 auto' }}>
+                    <FadeIn>
+                        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+                            <div style={{
+                                display: 'inline-block', backgroundColor: '#F0F5E0', color: '#9DB637',
+                                fontSize: '13px', fontWeight: '700', textTransform: 'uppercase',
+                                letterSpacing: '1.5px', padding: '6px 16px', borderRadius: '50px', marginBottom: '14px',
+                            }}>Sustainability 🌱</div>
+                            <h2 style={{ fontSize: '32px', fontWeight: '700', color: '#1A1A1A', marginBottom: '12px' }}>
+                                Our Sustainability Ecosystem
+                            </h2>
+                            <p style={{ fontSize: '16px', color: '#6C757D', lineHeight: '1.6', maxWidth: '560px', margin: '0 auto' }}>
+                                BuddyRide is built to last. Our flywheel model connects financial resilience, operational integrity, and social contribution to keep the mission moving forward.
+                            </p>
+                        </div>
+                    </FadeIn>
+                    <FadeIn delay="0.15s">
+                        <div style={{
+                            backgroundColor: '#FFFFFF', borderRadius: '20px',
+                            border: '1px solid #DEE2E6', boxShadow: '0 4px 20px rgba(0,0,0,0.06)',
+                            overflow: 'hidden',
+                        }}>
+                            <img
+                                src={SustainabilityImg}
+                                alt="The BuddyRide Flywheel: Sustainability Ecosystem"
+                                style={{ width: '100%', display: 'block' }}
+                            />
+                        </div>
+                    </FadeIn>
+                </div>
+            </section>
 
             {/* Bottom CTA */}
             <section style={ctaSectionStyle}>
