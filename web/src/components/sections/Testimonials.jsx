@@ -1,5 +1,7 @@
 import React from 'react';
 import Card from '../shared/Card';
+import RayPhoto from '../../assets/team/Ray.jpeg';
+import OluwafemiPhoto from '../../assets/team/Oluwafemi .jpeg';
 
 const testimonials = [
     {
@@ -7,7 +9,7 @@ const testimonials = [
         country: 'Ghana',
         university: 'McGill University',
         text: 'I joined BuddyRide because I believe no student should feel alone when arriving in a new country. I am excited to help new students feel connected and at home from the very beginning.',
-        avatar: 'RJ',
+        photo: RayPhoto,
         avatarColor: '#5CB1D8',
     },
     {
@@ -15,7 +17,7 @@ const testimonials = [
         country: 'Nigeria',
         university: 'McGill University',
         text: "I joined BuddyRide because it stands for everything I value: kindness, community, and meaningful impact. Students arriving in a new country often face excitement mixed with uncertainty and vulnerability, and BuddyRide turns that moment into one of guidance, support, and belonging. I'm proud to help create a welcoming start that builds confidence and makes their journey brighter from day one.",
-        avatar: 'OO',
+        photo: OluwafemiPhoto,
         avatarColor: '#9DB637',
     },
 ];
@@ -90,7 +92,7 @@ const Testimonials = () => {
         margin: '0 auto 56px auto', lineHeight: '1.6',
     };
 
-    const gridStyle = { display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '24px' };
+    const gridStyle = { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', justifyContent: 'center', maxWidth: '720px', margin: '0 auto' };
 
     const quoteStyle = {
         fontSize: '15px', color: '#6C757D', lineHeight: '1.7',
@@ -99,12 +101,11 @@ const Testimonials = () => {
 
     const authorRowStyle = { display: 'flex', alignItems: 'center', gap: '12px', textAlign: 'left' };
 
-    const avatarStyle = (color) => ({
+    const avatarStyle = {
         width: '44px', height: '44px', borderRadius: '50%',
-        backgroundColor: color, color: '#FFFFFF',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        fontSize: '15px', fontWeight: '700', flexShrink: 0,
-    });
+        objectFit: 'cover', objectPosition: 'top', flexShrink: 0,
+        border: '2px solid #DEE2E6',
+    };
 
     const starsStyle = { color: '#FFC107', fontSize: '16px', marginBottom: '12px', textAlign: 'left' };
 
@@ -113,7 +114,7 @@ const Testimonials = () => {
             <div style={starsStyle}>★★★★★</div>
             <p style={quoteStyle}>"{t.text}"</p>
             <div style={authorRowStyle}>
-                <div style={avatarStyle(t.avatarColor)}>{t.avatar}</div>
+                <img src={t.photo} alt={t.name} style={avatarStyle} />
                 <div>
                     <div style={{ fontSize: '15px', fontWeight: '700', color: '#1A1A1A' }}>{t.name}</div>
                     <div style={{ fontSize: '13px', color: '#ADB5BD' }}>{t.country} · {t.university}</div>

@@ -261,6 +261,10 @@ const Executives = ({ setCurrentPage }) => {
 
     const CoordCard = ({ member }) => {
         const [hovered, setHovered] = React.useState(false);
+        const [expanded, setExpanded] = React.useState(false);
+        const BIO_LIMIT = 100;
+        const isLong = member.bio.length > BIO_LIMIT;
+        const displayBio = expanded || !isLong ? member.bio : member.bio.slice(0, BIO_LIMIT).trimEnd() + '…';
         return (
             <div
                 style={{
@@ -269,6 +273,7 @@ const Executives = ({ setCurrentPage }) => {
                     boxShadow: hovered ? `0 8px 24px ${member.color}22` : '0 2px 10px rgba(0,0,0,0.05)',
                     transform: hovered ? 'translateY(-3px)' : 'none',
                     transition: 'box-shadow 0.25s ease, transform 0.25s ease',
+                    display: 'flex', flexDirection: 'column',
                 }}
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
@@ -281,13 +286,27 @@ const Executives = ({ setCurrentPage }) => {
                 }} />
                 <div style={{ fontSize: '15px', fontWeight: '700', color: '#1A1A1A', marginBottom: '3px' }}>{member.name}</div>
                 <div style={{ fontSize: '12px', color: member.color, fontWeight: '600', marginBottom: '10px', lineHeight: '1.4' }}>{member.role}</div>
-                <p style={{ fontSize: '13px', color: '#6C757D', lineHeight: '1.5', marginBottom: '12px' }}>{member.bio}</p>
+                <p style={{ fontSize: '13px', color: '#6C757D', lineHeight: '1.5', marginBottom: '4px', textAlign: 'left' }}>{displayBio}</p>
+                {isLong && (
+                    <button
+                        onClick={() => setExpanded(!expanded)}
+                        style={{
+                            background: 'none', border: 'none', cursor: 'pointer',
+                            fontSize: '12px', color: member.color, fontWeight: '700',
+                            padding: '2px 0', marginBottom: '10px', textAlign: 'left',
+                        }}
+                    >
+                        {expanded ? '↑ Show less' : '↓ Read more'}
+                    </button>
+                )}
+                {!isLong && <div style={{ marginBottom: '10px' }} />}
                 {member.linkedin && (
                     <a href={member.linkedin} target="_blank" rel="noreferrer" style={{
                         display: 'inline-flex', alignItems: 'center', gap: '5px',
                         padding: '5px 10px', borderRadius: '6px',
                         backgroundColor: '#EBF5FA', color: '#0A66C2',
                         fontSize: '12px', fontWeight: '600', textDecoration: 'none',
+                        marginTop: 'auto',
                     }}>
                         <LinkedInIcon /> LinkedIn
                     </a>
