@@ -203,11 +203,15 @@ const Home = ({ setCurrentPage }) => {
                                 fontWeight: '600',
                                 color: '#5CB1D8',
                                 textDecoration: 'none',
-                                borderBottom: '1px solid #5CB1D8',
-                                paddingBottom: '2px',
+                                border: '2px solid #5CB1D8',
+                                borderRadius: '8px',
+                                padding: '10px 20px',
+                                transition: 'background 0.2s, color 0.2s',
                             }}
+                            onMouseEnter={e => { e.currentTarget.style.background = '#5CB1D8'; e.currentTarget.style.color = '#fff'; }}
+                            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#5CB1D8'; }}
                         >
-                            📅 Want to know more? Book a meeting with the team
+                            📅 Book a meeting with the team
                         </a>
                     </div>
                 </div>
