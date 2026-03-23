@@ -28,19 +28,19 @@ const testimonials = [
     },
     {
         name: 'Addison',
-        subtitle: 'Volunteer Driver',
+        subtitle: 'University of Wisconsin-Madison',
         text: 'My decision to volunteer with BuddyRide comes from a deep desire to give back and pay forward the kindness I once received. When I first arrived in the United States, someone generously offered me a ride that helped me settle in during those early days. That simple act made a lasting impact. By volunteering as a driver, I hope to provide the same welcoming experience to new students.',
         photo: AddisonPhoto,
     },
     {
         name: 'Ivy',
-        subtitle: 'Volunteer',
+        subtitle: 'McGill University',
         text: 'I joined BuddyRide as a volunteer because I was inspired by three amazing individuals I know who are part of the initiative. Their leadership, dedication, and the way they carry out their work genuinely impressed me. I appreciate the purpose of BuddyRide in making transportation more accessible for people — being part of something that supports others in such a practical way is very meaningful.',
         photo: IvyPhoto,
     },
     {
         name: 'Justina',
-        subtitle: 'Volunteer',
+        subtitle: 'McGill University',
         text: 'My decision to join BuddyRide comes from deep gratitude and a desire to give back the support I once received. Moving to a new country and academic environment can be overwhelming, but guidance from upper-year scholars helped me navigate the transition. By joining BuddyRide, I hope to extend that same support to incoming students, ensuring they feel welcomed, guided, and empowered from the start.',
         photo: JustinaPhoto,
     },
