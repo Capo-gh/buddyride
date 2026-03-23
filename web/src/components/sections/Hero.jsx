@@ -75,29 +75,22 @@ const Hero = ({ setCurrentPage }) => {
     const badgesStyle = {
         display: 'flex',
         justifyContent: 'center',
-        gap: '24px',
+        gap: '12px',
     };
 
-    const badgeStyle = {
-        display: 'flex',
+    const badgeStyle = (bg, color) => ({
+        display: 'inline-flex',
         alignItems: 'center',
-        gap: '8px',
-        fontSize: '14px',
-        color: '#6C757D',
-    };
-
-    const badgeIconStyle = {
-        width: '32px',
-        height: '32px',
-        borderRadius: '50%',
-        backgroundColor: '#FFFFFF',
-        border: '1px solid #DEE2E6',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '16px',
-        boxShadow: '0 2px 6px rgba(0,0,0,0.06)',
-    };
+        gap: '7px',
+        fontSize: '13px',
+        fontWeight: '600',
+        color,
+        backgroundColor: bg,
+        border: `1px solid ${color}33`,
+        borderRadius: '50px',
+        padding: '8px 16px',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+    });
 
     // Decorative blobs
     const blobStyle = (top, left, width, color, opacity) => ({
@@ -149,17 +142,14 @@ const Hero = ({ setCurrentPage }) => {
 
                 {/* Trust Badges */}
                 <div className="hero-badges" style={badgesStyle}>
-                    <div style={badgeStyle}>
-                        <div style={badgeIconStyle}>✓</div>
-                        Completely Free
+                    <div style={badgeStyle('#EBF5FA', '#5CB1D8')}>
+                        ✅ 100% Free
                     </div>
-                    <div style={badgeStyle}>
-                        <div style={badgeIconStyle}>🛡️</div>
-                        Peer Verified
+                    <div style={badgeStyle('#F0F5E0', '#9DB637')}>
+                        🛡️ McGill Verified
                     </div>
-                    <div style={badgeStyle}>
-                        <div style={badgeIconStyle}>💚</div>
-                        30+ Rides Done
+                    <div style={badgeStyle('#FFF8E7', '#E6A817')}>
+                        🤝 30+ Rides Done
                     </div>
                 </div>
             </div>
