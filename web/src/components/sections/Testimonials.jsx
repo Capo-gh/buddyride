@@ -136,19 +136,38 @@ const Testimonials = () => {
 
     const starsStyle = { color: '#FFC107', fontSize: '16px', marginBottom: '12px', textAlign: 'left' };
 
-    const TestimonialContent = ({ t }) => (
-        <>
-            <div style={starsStyle}>★★★★★</div>
-            <p style={quoteStyle}>"{t.text}"</p>
-            <div style={authorRowStyle}>
-                <img src={t.photo} alt={t.name} style={avatarStyle} />
-                <div>
-                    <div style={{ fontSize: '15px', fontWeight: '700', color: '#1A1A1A' }}>{t.name}</div>
-                    <div style={{ fontSize: '13px', color: '#ADB5BD' }}>{t.subtitle}</div>
+    const TEXT_LIMIT = 160;
+
+    const TestimonialContent = ({ t }) => {
+        const [expanded, setExpanded] = React.useState(false);
+        const isLong = t.text.length > TEXT_LIMIT;
+        const displayText = expanded || !isLong ? t.text : t.text.slice(0, TEXT_LIMIT).trimEnd() + '…';
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                <div style={starsStyle}>★★★★★</div>
+                <p style={{ ...quoteStyle, flexGrow: 1 }}>"{displayText}"</p>
+                {isLong && (
+                    <button
+                        onClick={() => setExpanded(!expanded)}
+                        style={{
+                            background: 'none', border: 'none', cursor: 'pointer',
+                            fontSize: '12px', color: '#5CB1D8', fontWeight: '700',
+                            padding: '0 0 12px 0', textAlign: 'left',
+                        }}
+                    >
+                        {expanded ? '↑ Show less' : '↓ Read more'}
+                    </button>
+                )}
+                <div style={authorRowStyle}>
+                    <img src={t.photo} alt={t.name} style={avatarStyle} />
+                    <div>
+                        <div style={{ fontSize: '15px', fontWeight: '700', color: '#1A1A1A' }}>{t.name}</div>
+                        <div style={{ fontSize: '13px', color: '#ADB5BD' }}>{t.subtitle}</div>
+                    </div>
                 </div>
             </div>
-        </>
-    );
+        );
+    };
 
     const t = testimonials[current];
 
@@ -164,9 +183,11 @@ const Testimonials = () => {
                 {/* Desktop: 3-column grid */}
                 <div className="testimonials-grid" style={gridStyle}>
                     {testimonials.map((t, index) => (
-                        <Card key={index} hoverEffect={true}>
-                            <TestimonialContent t={t} />
-                        </Card>
+                        <div key={index} style={{ display: 'flex' }}>
+                            <Card hoverEffect={true}>
+                                <TestimonialContent t={t} />
+                            </Card>
+                        </div>
                     ))}
                 </div>
 
