@@ -2,23 +2,47 @@ import React from 'react';
 import Card from '../shared/Card';
 import RayPhoto from '../../assets/team/Ray.jpeg';
 import OluwafemiPhoto from '../../assets/team/Oluwafemi .jpeg';
+import ChigoziePhoto from '../../assets/team/Chigozie Aniche.jpeg';
+import AddisonPhoto from '../../assets/team/Addison.jpeg';
+import IvyPhoto from '../../assets/team/Ivy.jpeg';
+import JustinaPhoto from '../../assets/team/Justina.jpeg';
 
 const testimonials = [
     {
         name: 'Ray Johnson',
-        country: 'Ghana',
-        university: 'McGill University',
+        subtitle: 'Ghana · McGill University',
         text: 'I joined BuddyRide because I believe no student should feel alone when arriving in a new country. I am excited to help new students feel connected and at home from the very beginning.',
         photo: RayPhoto,
-        avatarColor: '#5CB1D8',
     },
     {
         name: 'Oluwafemi Oke',
-        country: 'Nigeria',
-        university: 'McGill University',
+        subtitle: 'Nigeria · McGill University',
         text: "I joined BuddyRide because it stands for everything I value: kindness, community, and meaningful impact. Students arriving in a new country often face excitement mixed with uncertainty and vulnerability, and BuddyRide turns that moment into one of guidance, support, and belonging. I'm proud to help create a welcoming start that builds confidence and makes their journey brighter from day one.",
         photo: OluwafemiPhoto,
-        avatarColor: '#9DB637',
+    },
+    {
+        name: 'Chigozie Aniche',
+        subtitle: 'Volunteer',
+        text: 'Joining BuddyRide as a volunteer has been an incredible decision. I found a dedicated team committed to service, empathy, integrity, and trust — values that shape everything they build. International students often arrive carrying anxiety and uncertainty, especially when they have no familiar faces waiting for them. BuddyRide solves this. It ensures you feel secure, supported, and confident from the moment you land.',
+        photo: ChigoziePhoto,
+    },
+    {
+        name: 'Addison',
+        subtitle: 'Volunteer Driver',
+        text: 'My decision to volunteer with BuddyRide comes from a deep desire to give back and pay forward the kindness I once received. When I first arrived in the United States, someone generously offered me a ride that helped me settle in during those early days. That simple act made a lasting impact. By volunteering as a driver, I hope to provide the same welcoming experience to new students.',
+        photo: AddisonPhoto,
+    },
+    {
+        name: 'Ivy',
+        subtitle: 'Volunteer',
+        text: 'I joined BuddyRide as a volunteer because I was inspired by three amazing individuals I know who are part of the initiative. Their leadership, dedication, and the way they carry out their work genuinely impressed me. I appreciate the purpose of BuddyRide in making transportation more accessible for people — being part of something that supports others in such a practical way is very meaningful.',
+        photo: IvyPhoto,
+    },
+    {
+        name: 'Justina',
+        subtitle: 'Volunteer',
+        text: 'My decision to join BuddyRide comes from deep gratitude and a desire to give back the support I once received. Moving to a new country and academic environment can be overwhelming, but guidance from upper-year scholars helped me navigate the transition. By joining BuddyRide, I hope to extend that same support to incoming students, ensuring they feel welcomed, guided, and empowered from the start.',
+        photo: JustinaPhoto,
     },
 ];
 
@@ -68,6 +92,9 @@ const Testimonials = () => {
           .testimonials-carousel { display: block !important; }
           .testimonials-section-title { font-size: 28px !important; }
         }
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .testimonials-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
         @media (min-width: 769px) {
           .testimonials-carousel { display: none !important; }
         }
@@ -92,7 +119,7 @@ const Testimonials = () => {
         margin: '0 auto 56px auto', lineHeight: '1.6',
     };
 
-    const gridStyle = { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', justifyContent: 'center', maxWidth: '720px', margin: '0 auto' };
+    const gridStyle = { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', maxWidth: '1000px', margin: '0 auto' };
 
     const quoteStyle = {
         fontSize: '15px', color: '#6C757D', lineHeight: '1.7',
@@ -117,7 +144,7 @@ const Testimonials = () => {
                 <img src={t.photo} alt={t.name} style={avatarStyle} />
                 <div>
                     <div style={{ fontSize: '15px', fontWeight: '700', color: '#1A1A1A' }}>{t.name}</div>
-                    <div style={{ fontSize: '13px', color: '#ADB5BD' }}>{t.country} · {t.university}</div>
+                    <div style={{ fontSize: '13px', color: '#ADB5BD' }}>{t.subtitle}</div>
                 </div>
             </div>
         </>
