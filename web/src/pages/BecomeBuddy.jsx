@@ -1,81 +1,6 @@
 import React from 'react';
-import Input from '../components/shared/Input';
-import Button from '../components/shared/Button';
-import { validateVolunteerForm } from '../../../shared/utils/validation';
-import emailjs from '@emailjs/browser';
-
-const universityOptions = [
-    { value: 'mcgill', label: 'McGill University' },
-    { value: 'concordia', label: 'Concordia University' },
-    { value: 'udem', label: 'Université de Montréal' },
-    { value: 'uqam', label: 'UQAM' },
-    { value: 'ets', label: 'École de technologie supérieure (ÉTS)' },
-    { value: 'toronto', label: 'University of Toronto' },
-    { value: 'uottawa', label: 'University of Ottawa' },
-    { value: 'carleton', label: 'Carleton University' },
-    { value: 'other', label: 'Other' },
-];
-
-const cityOptions = [
-    { value: 'montreal', label: 'Montreal, QC' },
-    { value: 'winnipeg', label: 'Winnipeg, MB' },
-    { value: 'edmonton', label: 'Edmonton, AB' },
-    { value: 'guelph', label: 'Guelph, ON' },
-    { value: 'toronto', label: 'Toronto, ON' },
-    { value: 'ottawa', label: 'Ottawa, ON' },
-    { value: 'fayetteville', label: 'Fayetteville, AR' },
-    { value: 'pullman', label: 'Pullman, WA' },
-    { value: 'madison', label: 'Madison, WI' },
-    { value: 'dekalb', label: 'DeKalb, IL' },
-    { value: 'other', label: 'Other' },
-];
-
-const volunteerRoleOptions = [
-    { value: 'airport_driver', label: 'Airport Pickup Driver' },
-    { value: 'campus_ambassador', label: 'Campus Ambassador' },
-    { value: 'community_outreach', label: 'Community Outreach' },
-    { value: 'communications_media', label: 'Communications and Media' },
-    { value: 'event_support', label: 'Event Support' },
-    { value: 'admin_support', label: 'Administrative Support' },
-    { value: 'other', label: 'Other' },
-];
-
-const driverOptions = [
-    { value: 'yes', label: 'Yes, I want to volunteer as a driver' },
-    { value: 'no', label: 'No, I will help in other ways' },
-];
-
-const capacityOptions = [
-    { value: '1', label: '1 passenger' },
-    { value: '2', label: '2 passengers' },
-    { value: '3', label: '3 passengers' },
-    { value: '4', label: '4 passengers' },
-    { value: '5', label: '5 passengers' },
-    { value: '6+', label: '6 or more passengers' },
-];
 
 const BecomeBuddy = () => {
-    const [formData, setFormData] = React.useState({
-        fullName: '',
-        email: '',
-        phone: '',
-        university: '',
-        otherUniversity: '',
-        city: '',
-        otherCity: '',
-        volunteerRole: '',
-        otherVolunteerRole: '',
-        wantsToBeDriver: '',
-        carType: '',
-        passengerCapacity: '',
-        whyVolunteer: '',
-    });
-    const [agreedToTerms, setAgreedToTerms] = React.useState(false);
-
-    const [errors, setErrors] = React.useState({});
-    const [submitted, setSubmitted] = React.useState(false);
-    const [submitting, setSubmitting] = React.useState(false);
-
     React.useEffect(() => {
         const styleId = 'become-buddy-responsive';
         let styleEl = document.getElementById(styleId);
@@ -88,7 +13,6 @@ const BecomeBuddy = () => {
           .buddy-perks-grid { grid-template-columns: 1fr 1fr !important; }
           .buddy-container { padding: 40px 20px !important; }
           .buddy-title { font-size: 26px !important; }
-          .buddy-card { padding: 28px 20px !important; }
         }
         @media (max-width: 400px) {
           .buddy-perks-grid { grid-template-columns: 1fr !important; }
@@ -98,83 +22,6 @@ const BecomeBuddy = () => {
         }
     }, []);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
-        if (errors[name]) {
-            setErrors((prev) => ({ ...prev, [name]: '' }));
-        }
-    };
-
-    const handleSubmit = async () => {
-        const { isValid, errors: validationErrors } = validateVolunteerForm(formData);
-        if (!isValid) {
-            setErrors(validationErrors);
-            return;
-        }
-        if (!agreedToTerms) {
-            setErrors((prev) => ({ ...prev, terms: 'You must agree to the terms and conditions before submitting.' }));
-            return;
-        }
-
-        setSubmitting(true);
-
-        try {
-            await emailjs.send(
-                'service_eld81fl',
-                'template_ddbo633',
-                formData,
-                'erySL5OQktOUrdOOO'
-            );
-            setSubmitted(true);
-        } catch (error) {
-            console.error('EmailJS Error:', error);
-            alert('Failed to send your application. Please try again or email us directly at buddyride.requests@gmail.com');
-        } finally {
-            setSubmitting(false);
-        }
-    };
-
-    const handleReset = () => {
-        setFormData({
-            fullName: '',
-            email: '',
-            phone: '',
-            university: '',
-            otherUniversity: '',
-            city: '',
-            otherCity: '',
-            volunteerRole: '',
-            otherVolunteerRole: '',
-            wantsToBeDriver: '',
-            carType: '',
-            passengerCapacity: '',
-            whyVolunteer: '',
-        });
-        setAgreedToTerms(false);
-        setErrors({});
-        setSubmitted(false);
-    };
-
-    // Success Screen
-    if (submitted) {
-        return (
-            <div style={{ padding: '100px 24px', textAlign: 'center', minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div style={{ maxWidth: '480px', width: '100%' }}>
-                    <div style={{ width: '90px', height: '90px', borderRadius: '50%', background: 'linear-gradient(135deg, #9DB637, #5CB1D8)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px auto', fontSize: '40px' }}>
-                        🤝
-                    </div>
-                    <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#1A1A1A', marginBottom: '12px' }}>Welcome to the team!</h2>
-                    <p style={{ fontSize: '16px', color: '#6C757D', lineHeight: '1.6', marginBottom: '32px' }}>
-                        Thanks for signing up, <strong>{formData.fullName}</strong>! We'll be in touch at <strong>{formData.email}</strong> with next steps and onboarding details.
-                    </p>
-                    <Button variant="secondary" onClick={handleReset} fullWidth={true}>Sign Up Another Person</Button>
-                </div>
-            </div>
-        );
-    }
-
-    // Perks data
     const perks = [
         { icon: '🌟', title: 'Make a Real Impact', desc: 'Be the first friendly face someone sees in a new country.' },
         { icon: '🤝', title: 'Build Community', desc: 'Connect with students from all over the world.' },
@@ -182,264 +29,57 @@ const BecomeBuddy = () => {
         { icon: '🎉', title: 'Exclusive Events', desc: 'Access Buddy-only meetups and social events.' },
     ];
 
-    // Styles
-    const containerStyle = {
-        padding: '60px 24px',
-        maxWidth: '1050px',
-        margin: '0 auto',
-    };
-
-    const headerStyle = {
-        textAlign: 'center',
-        marginBottom: '48px',
-    };
-
-    const titleStyle = {
-        fontSize: '34px',
-        fontWeight: '700',
-        color: '#1A1A1A',
-        marginBottom: '10px',
-    };
-
-    const subtitleStyle = {
-        fontSize: '16px',
-        color: '#6C757D',
-        lineHeight: '1.6',
-        maxWidth: '560px',
-        margin: '0 auto',
-    };
-
-    const layoutStyle = {
-        display: 'grid',
-        gridTemplateColumns: '1fr 1.4fr',
-        gap: '36px',
-        alignItems: 'start',
-    };
-
-    const perksCardStyle = {
-        backgroundColor: 'linear-gradient(135deg, #F0F5E0, #EBF5FA)',
-        borderRadius: '16px',
-        padding: '32px',
-        border: '1px solid #DEE2E6',
-        boxShadow: '0 4px 16px rgba(0,0,0,0.06)',
-    };
-
-    const perksHeaderStyle = {
-        fontSize: '18px',
-        fontWeight: '700',
-        color: '#1A1A1A',
-        marginBottom: '20px',
-        textAlign: 'center',
-    };
-
-    const perksGridStyle = {
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: '16px',
-    };
-
-    const perkItemStyle = {
-        backgroundColor: '#FFFFFF',
-        borderRadius: '12px',
-        padding: '20px 16px',
-        textAlign: 'center',
-        border: '1px solid #DEE2E6',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
-    };
-
-    const perkIconStyle = {
-        fontSize: '28px',
-        marginBottom: '8px',
-    };
-
-    const perkTitleStyle = {
-        fontSize: '14px',
-        fontWeight: '700',
-        color: '#1A1A1A',
-        marginBottom: '4px',
-    };
-
-    const perkDescStyle = {
-        fontSize: '12px',
-        color: '#6C757D',
-        lineHeight: '1.5',
-    };
-
-    const howBoxStyle = {
-        backgroundColor: '#EBF5FA',
-        borderRadius: '12px',
-        padding: '20px',
-        marginTop: '20px',
-        border: '1px solid #DEE2E6',
-    };
-
-    const howTitleStyle = {
-        fontSize: '14px',
-        fontWeight: '700',
-        color: '#5CB1D8',
-        marginBottom: '10px',
-    };
-
-    const howStepStyle = {
-        display: 'flex',
-        gap: '10px',
-        alignItems: 'flex-start',
-        marginBottom: '10px',
-    };
-
-    const howNumberStyle = {
-        width: '24px',
-        height: '24px',
-        borderRadius: '50%',
-        backgroundColor: '#5CB1D8',
-        color: '#FFFFFF',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '13px',
-        fontWeight: '700',
-        flexShrink: 0,
-    };
-
-    const howTextStyle = {
-        fontSize: '13px',
-        color: '#343A40',
-        lineHeight: '1.5',
-        paddingTop: '2px',
-    };
-
-    const cardStyle = {
-        backgroundColor: '#FFFFFF',
-        borderRadius: '16px',
-        padding: '40px',
-        boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-        border: '1px solid #DEE2E6',
-    };
-
-    const sectionTitleStyle = {
-        fontSize: '16px',
-        fontWeight: '700',
-        color: '#1A1A1A',
-        marginBottom: '16px',
-        paddingBottom: '10px',
-        borderBottom: '2px solid #F0F5E0',
-    };
-
-    const gridStyle = {
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: '0 20px',
-    };
-
-    const dividerStyle = {
-        height: '1px',
-        backgroundColor: '#DEE2E6',
-        margin: '28px 0',
-    };
-
     return (
-        <div className="buddy-container" style={containerStyle}>
-            <div style={headerStyle}>
+        <div className="buddy-container" style={{ padding: '60px 24px', maxWidth: '1050px', margin: '0 auto' }}>
+            <div style={{ textAlign: 'center', marginBottom: '48px' }}>
                 <div style={{ fontSize: '40px', marginBottom: '12px' }}>🤝</div>
-                <h1 className="buddy-title" style={titleStyle}>Become a Buddy</h1>
-                <p style={subtitleStyle}>Join our volunteer team and be the reason a new student's first day abroad feels like home.</p>
+                <h1 className="buddy-title" style={{ fontSize: '34px', fontWeight: '700', color: '#1A1A1A', marginBottom: '10px' }}>Become a Buddy</h1>
+                <p style={{ fontSize: '16px', color: '#6C757D', lineHeight: '1.6', maxWidth: '560px', margin: '0 auto' }}>
+                    Join our volunteer team and be the reason a new student's first day abroad feels like home.
+                </p>
             </div>
 
-            <div className="buddy-layout" style={layoutStyle}>
-                {/* Left Column — Perks + How it works */}
+            <div className="buddy-layout" style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: '36px', alignItems: 'start' }}>
+                {/* Left Column */}
                 <div>
-                    <div style={perksCardStyle}>
-                        <h3 style={perksHeaderStyle}>Why become a Buddy?</h3>
-                        <div className="buddy-perks-grid" style={perksGridStyle}>
+                    <div style={{ borderRadius: '16px', padding: '32px', border: '1px solid #DEE2E6', boxShadow: '0 4px 16px rgba(0,0,0,0.06)', background: 'linear-gradient(135deg, #F0F5E0, #EBF5FA)' }}>
+                        <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#1A1A1A', marginBottom: '20px', textAlign: 'center' }}>Why become a Buddy?</h3>
+                        <div className="buddy-perks-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                             {perks.map((perk, i) => (
-                                <div key={i} style={perkItemStyle}>
-                                    <div style={perkIconStyle}>{perk.icon}</div>
-                                    <div style={perkTitleStyle}>{perk.title}</div>
-                                    <div style={perkDescStyle}>{perk.desc}</div>
+                                <div key={i} style={{ backgroundColor: '#FFFFFF', borderRadius: '12px', padding: '20px 16px', textAlign: 'center', border: '1px solid #DEE2E6', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
+                                    <div style={{ fontSize: '28px', marginBottom: '8px' }}>{perk.icon}</div>
+                                    <div style={{ fontSize: '14px', fontWeight: '700', color: '#1A1A1A', marginBottom: '4px' }}>{perk.title}</div>
+                                    <div style={{ fontSize: '12px', color: '#6C757D', lineHeight: '1.5' }}>{perk.desc}</div>
                                 </div>
                             ))}
                         </div>
                     </div>
 
-                    <div style={howBoxStyle}>
-                        <h4 style={howTitleStyle}>What happens after you sign up?</h4>
-                        <div style={howStepStyle}>
-                            <div style={howNumberStyle}>1</div>
-                            <p style={howTextStyle}>We review your application and verify your student status.</p>
-                        </div>
-                        <div style={{ ...howStepStyle, marginBottom: 0 }}>
-                            <div style={howNumberStyle}>2</div>
-                            <p style={howTextStyle}>You'll get a short onboarding email with your volunteer portfolio details, guidelines, and safety tips. Then you're part of the team!</p>
-                        </div>
+                    <div style={{ backgroundColor: '#EBF5FA', borderRadius: '12px', padding: '20px', marginTop: '20px', border: '1px solid #DEE2E6' }}>
+                        <h4 style={{ fontSize: '14px', fontWeight: '700', color: '#5CB1D8', marginBottom: '10px' }}>What happens after you sign up?</h4>
+                        {[
+                            'We review your application and verify your student status.',
+                            "You'll get a short onboarding email with your volunteer portfolio details, guidelines, and safety tips. Then you're part of the team!",
+                        ].map((step, i) => (
+                            <div key={i} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', marginBottom: i === 0 ? '10px' : 0 }}>
+                                <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#5CB1D8', color: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '13px', fontWeight: '700', flexShrink: 0 }}>{i + 1}</div>
+                                <p style={{ fontSize: '13px', color: '#343A40', lineHeight: '1.5', paddingTop: '2px', margin: 0 }}>{step}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
 
-                {/* Right Column — Form */}
-                <div className="buddy-card" style={cardStyle}>
-                    <h3 style={sectionTitleStyle}>Personal Information</h3>
-                    <Input label="Full Name" type="text" name="fullName" value={formData.fullName} onChange={handleChange} placeholder="e.g. Sarah Chen" error={errors.fullName} required />
-                    <div style={gridStyle}>
-                        <Input label="Email" type="email" name="email" value={formData.email} onChange={handleChange} placeholder="you@email.com" error={errors.email} required />
-                        <Input label="Phone Number" type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="+1 514 123 4567" error={errors.phone} required />
-                    </div>
-
-                    <div style={dividerStyle}></div>
-
-                    <h3 style={sectionTitleStyle}>Student Details</h3>
-                    <div style={gridStyle}>
-                        <Input label="University" name="university" value={formData.university} onChange={handleChange} placeholder="Select university" options={universityOptions} error={errors.university} required />
-                        <Input label="City" name="city" value={formData.city} onChange={handleChange} placeholder="Select city" options={cityOptions} error={errors.city} required />
-                    </div>
-                    {formData.university === 'other' && (
-                        <Input label="Please specify your university" type="text" name="otherUniversity" value={formData.otherUniversity} onChange={handleChange} placeholder="e.g. University of Calgary" required />
-                    )}
-                    {formData.city === 'other' && (
-                        <Input label="Please specify your city" type="text" name="otherCity" value={formData.otherCity} onChange={handleChange} placeholder="e.g. Vancouver, BC" required />
-                    )}
-
-                    <div style={dividerStyle}></div>
-
-                    <h3 style={sectionTitleStyle}>Your Volunteer Role</h3>
-                    <Input label="What role would you like to fill?" name="volunteerRole" value={formData.volunteerRole} onChange={handleChange} placeholder="Select a role" options={volunteerRoleOptions} error={errors.volunteerRole} required />
-                    {formData.volunteerRole === 'other' && (
-                        <Input label="Please specify your role" type="text" name="otherVolunteerRole" value={formData.otherVolunteerRole} onChange={handleChange} placeholder="e.g. Social Media Manager" required />
-                    )}
-
-                    <Input label="Do you want to volunteer as a driver?" name="wantsToBeDriver" value={formData.wantsToBeDriver} onChange={handleChange} placeholder="Select an option" options={driverOptions} error={errors.wantsToBeDriver} required />
-
-                    {formData.wantsToBeDriver === 'yes' && (
-                        <div style={gridStyle}>
-                            <Input label="Type of car" type="text" name="carType" value={formData.carType} onChange={handleChange} placeholder="e.g. Toyota Corolla 2020" error={errors.carType} required />
-                            <Input label="Passenger capacity" name="passengerCapacity" value={formData.passengerCapacity} onChange={handleChange} placeholder="Select capacity" options={capacityOptions} error={errors.passengerCapacity} required />
-                        </div>
-                    )}
-
-                    <Input label="Why do you want to volunteer?" type="textarea" name="whyVolunteer" value={formData.whyVolunteer} onChange={handleChange} placeholder="Tell us what motivates you..." />
-
-                    {/* Terms & Conditions */}
-                    <div style={{ marginTop: '8px' }}>
-                        <label style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', cursor: 'pointer' }}>
-                            <input
-                                type="checkbox"
-                                checked={agreedToTerms}
-                                onChange={(e) => { setAgreedToTerms(e.target.checked); setErrors((prev) => ({ ...prev, terms: '' })); }}
-                                style={{ marginTop: '3px', width: '16px', height: '16px', flexShrink: 0, cursor: 'pointer', accentColor: '#9DB637' }}
-                            />
-                            <span style={{ fontSize: '13px', color: '#343A40', lineHeight: '1.5' }}>
-                                By submitting this form I acknowledge and agree to all{' '}
-                                <a href="https://drive.google.com/file/d/1Y8tudLk1KHoNW3st13mRiQyDICDBtUxW/view?usp=drivesdk" target="_blank" rel="noopener noreferrer" style={{ color: '#9DB637', fontWeight: '600' }}>
-                                    waiver terms and conditions
-                                </a>. <span style={{ color: '#DC3545' }}>*</span>
-                            </span>
-                        </label>
-                        {errors.terms && <p style={{ fontSize: '13px', color: '#DC3545', marginTop: '6px' }}>{errors.terms}</p>}
-                    </div>
-
-                    <div style={{ marginTop: '24px' }}>
-                        <Button variant="secondary" onClick={handleSubmit} fullWidth={true} disabled={submitting}>
-                            {submitting ? 'Sending...' : 'Join as a Buddy 🤝'}
-                        </Button>
-                    </div>
+                {/* Right Column — Google Form */}
+                <div style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: '1px solid #DEE2E6' }}>
+                    <iframe
+                        src="https://docs.google.com/forms/d/e/1FAIpQLScODRlIHEHnw2HxxXr5neUDo785qcIJIyerhIImsPgI_xe3fw/viewform?embedded=true"
+                        width="100%"
+                        height="1400"
+                        title="Become a Buddy"
+                        style={{ display: 'block', border: 0, margin: 0 }}
+                    >
+                        Loading…
+                    </iframe>
                 </div>
             </div>
         </div>

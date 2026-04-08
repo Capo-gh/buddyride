@@ -12,6 +12,7 @@ import ReportIncident from './pages/ReportIncident';
 import Executives from './pages/Executives';
 import Services from './pages/Services';
 import Partners from './pages/Partners';
+import Gallery from './pages/Gallery';
 import { ROUTES } from './utils/routes';
 
 const App = () => {
@@ -46,6 +47,8 @@ const App = () => {
         return <Contact />;
       case ROUTES.REPORT:
         return <ReportIncident />;
+      case ROUTES.GALLERY:
+        return <Gallery />;
       default:
         return <Home setCurrentPage={setCurrentPage} />;
     }

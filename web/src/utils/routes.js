@@ -10,6 +10,7 @@ export const ROUTES = {
     FAQ: '/faq',
     CONTACT: '/contact',
     REPORT: '/report-incident',
+    GALLERY: '/gallery',
 };
 
 export const FOOTER_LINKS = [

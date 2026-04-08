@@ -9,6 +9,7 @@ const NAV_ITEMS = [
         children: [
             { label: 'About BuddyRide', path: ROUTES.ABOUT },
             { label: 'Meet the Team', path: ROUTES.EXECUTIVES },
+            { label: 'Gallery', path: ROUTES.GALLERY },
             { label: 'Partners', path: ROUTES.PARTNERS },
             { label: 'FAQ', path: ROUTES.FAQ },
         ],
